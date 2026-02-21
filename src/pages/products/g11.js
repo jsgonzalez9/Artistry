@@ -246,46 +246,105 @@ export default function G11Product() {
                 {productSpecs.tagline}
               </p>
 
-              {/* Price with Financing */}
+              {/* Price with Financing - Hero Callout */}
               <div style={{ marginBottom: '32px' }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '16px', marginBottom: '8px' }}>
+                {/* Hero Financing Display */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'baseline', 
+                  gap: '12px', 
+                  marginBottom: '16px',
+                  flexWrap: 'wrap'
+                }}>
                   <span style={{ 
                     fontFamily: 'Playfair Display, serif', 
-                    fontSize: '2rem', 
-                    color: '#F5F5F5'
+                    fontSize: '3rem', 
+                    color: '#F5F5F5',
+                    lineHeight: 1
                   }}>
-                    {productSpecs.price}
+                    $481<span style={{ fontSize: '1.5rem' }}>/mo</span>
+                  </span>
+                  <span style={{ 
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '1.25rem',
+                    color: '#C5A059',
+                    fontWeight: 600
+                  }}>
+                    via Affirm
+                  </span>
+                </div>
+                
+                {/* Price Comparison */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '12px', 
+                  marginBottom: '16px' 
+                }}>
+                  <span style={{ 
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '0.9rem',
+                    color: '#A0A0A0'
+                  }}>
+                    or $14,990 one-time
                   </span>
                   {productSpecs.msrp && (
                     <span style={{ 
                       fontFamily: 'Inter, sans-serif',
-                      fontSize: '1rem',
-                      color: '#A0A0A0',
+                      fontSize: '0.85rem',
+                      color: '#726E8D',
                       textDecoration: 'line-through',
                     }}>
-                      {productSpecs.msrp}
+                      MSRP {productSpecs.msrp}
                     </span>
                   )}
                 </div>
+                
+                {/* Value Comparison */}
                 <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '8px 16px',
-                  backgroundColor: '#1A1A1A',
+                  padding: '16px 20px',
+                  backgroundColor: 'rgba(197, 160, 89, 0.1)',
                   border: '1px solid rgba(197, 160, 89, 0.3)',
-                  borderRadius: '4px'
+                  borderRadius: '4px',
+                  marginBottom: '20px'
                 }}>
-                  <span style={{ fontSize: '0.875rem', color: '#A0A0A0' }}>or</span>
+                  <p style={{ 
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '0.95rem', 
+                    color: '#F5F5F5',
+                    margin: 0,
+                    lineHeight: 1.6
+                  }}>
+                    <span style={{ color: '#C5A059', fontWeight: 600 }}>Pay less than your monthly gym membership.</span>
+                    <span style={{ color: '#A0A0A0' }}> Use daily, own for decades, skip the waitlists.</span>
+                  </p>
+                </div>
+                
+                {/* Trust Indicators */}
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '16px', 
+                  flexWrap: 'wrap',
+                  marginBottom: '24px'
+                }}>
                   <span style={{ 
                     fontFamily: 'Inter, sans-serif',
-                    fontSize: '1.125rem', 
+                    fontSize: '0.85rem',
                     color: '#C5A059',
-                    fontWeight: 600
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px'
                   }}>
-                    {productSpecs.financing}
+                    ✓ 0% APR for 36 months
                   </span>
-                  <span style={{ fontSize: '0.75rem', color: '#726E8D' }}>• 0% APR for qualified buyers</span>
+                  <span style={{ 
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '0.85rem',
+                    color: '#A0A0A0'
+                  }}>
+                    Prequalify in 60 seconds →
+                  </span>
                 </div>
               </div>
 
