@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
-import { FORMSPREE_ENDPOINT, FORM_CONFIG, VALIDATION_PATTERNS } from "../../config/forms";
+import { FORMSPREE_ENDPOINT, FORM_CONFIG, VALIDATION_PATTERNS } from "../config/forms";
 
 interface QuoteModalProps {
   isOpen: boolean;

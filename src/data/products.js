@@ -53,9 +53,6 @@ export const g4Cube = saunaProducts.find(p => p.id === 'saunalife-g4');
 // Utility function to get product by ID
 export const getProductById = (id) => saunaProducts.find(p => p.id === id);
 
-// Utility function to get all products by category
-export const getProductsByCategory = (category) => saunaProducts.filter(p => p.category === category);
-
 // Finnmark X-Series Infrared Saunas
 export const infraredProducts = finnmark.products.map(model => ({
   id: `finnmark-${model.model.toLowerCase()}`,
@@ -103,8 +100,11 @@ export const allProducts = [...saunaProducts, ...infraredProducts];
 
 // Utility function to get all products by category
 export const getProductsByCategory = (category) => {
-  if (category === 'infrared-saunas') {
+  if (category === 'infrared-saunas' || category === 'infrared') {
     return infraredProducts;
   }
-  return saunaProducts.filter(p => p.category === category);
+  if (category === 'saunas' || category === 'barrel-saunas') {
+    return saunaProducts;
+  }
+  return allProducts;
 };
