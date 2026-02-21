@@ -92,18 +92,20 @@ export default function InfraredSaunas() {
                 boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
               }}
             >
-              {/* Product Image Placeholder */}
+              {/* Product Image */}
               <div style={{
                 height: '350px',
+                position: 'relative',
                 background: 'linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative'
+                overflow: 'hidden'
               }}>
-                <span style={{ color: 'var(--lux-gray)', fontSize: '1rem' }}>
-                  {product.name} - Product Image
-                </span>
+                <Image
+                  src={product.image_url || '/images/placeholder-sauna.jpg'}
+                  alt={product.name}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  priority={index < 2}
+                />
                 <div style={{
                   position: 'absolute',
                   top: '20px',
