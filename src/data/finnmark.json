@@ -69,10 +69,9 @@
         "origin": "Made in China, distributed from UK/US"
       },
       "images": {
-        "hero": "https://finnmarksauna.com/cdn/shop/products/finnmark-x1-infrared-hero.jpg",
+        "hero": "/img/x1/Gemini_Generated_Image_isf9hjisf9hjisf9.png",
         "lifestyle": [
-          "https://finnmarksauna.com/cdn/shop/products/finnmark-x1-lifestyle-1.jpg",
-          "https://finnmarksauna.com/cdn/shop/products/finnmark-x1-lifestyle-2.jpg"
+          "/img/x1/Gemini_Generated_Image_isf9hjisf9hjisf9.png"
         ],
         "technical": "https://finnmarksauna.com/cdn/shop/products/finnmark-x1-dimensions.pdf"
       }
