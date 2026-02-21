@@ -11,24 +11,20 @@ export default function X4Product() {
 
   const productImages = [
     {
-      url: "https://placehold.co/800x800/1A1A1A/FFFFFF?text=X4+Front+View",
-      alt: "SaunaLife X4 - Front View"
+      url: "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=800&auto=format&fit=crop",
+      alt: "Finnmark X4 - Front View"
     },
     {
-      url: "https://placehold.co/800x800/2A2A2A/FFFFFF?text=X4+Side+View",
-      alt: "SaunaLife X4 - Side View"
+      url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&auto=format&fit=crop",
+      alt: "Finnmark X4 - Side View"
     },
     {
-      url: "https://placehold.co/800x800/3A3A3A/FFFFFF?text=X4+Interior",
-      alt: "SaunaLife X4 - Interior Aspen Benches"
+      url: "https://images.unsplash.com/photo-1575517111839-3a3843ee7f5d?w=800&auto=format&fit=crop",
+      alt: "Finnmark X4 - Interior Hemlock Benches"
     },
     {
-      url: "https://placehold.co/800x800/4A4A4A/FFFFFF?text=X4+LED+Lighting",
-      alt: "SaunaLife X4 - X-Mood Lighting"
-    },
-    {
-      url: "https://placehold.co/800x800/5A5A5A/FFFFFF?text=X4+Detail",
-      alt: "SaunaLife X4 - Detail View"
+      url: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&auto=format&fit=crop",
+      alt: "Finnmark X4 - Chromotherapy Lighting"
     }
   ];
 

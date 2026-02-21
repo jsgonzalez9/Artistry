@@ -11,23 +11,23 @@ export default function ColdPlungeProduct() {
 
   const productImages = [
     {
-      url: "/img/cold-plunge/cold-plunge-hero.png",
-      alt: "Cold Plunge - Front View",
+      url: "https://images.unsplash.com/photo-1575425186775-b8de9a427e67?w=800&auto=format&fit=crop",
+      alt: "Slate Immersion - Front View",
       fallback: "https://images.unsplash.com/photo-1575425186775-b8de9a427e67?w=800",
     },
     {
-      url: "/img/cold-plunge/cold-plunge-side.png",
-      alt: "Cold Plunge - Side Profile",
+      url: "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=800&auto=format&fit=crop",
+      alt: "Slate Immersion - Side Profile",
       fallback: "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=800",
     },
     {
-      url: "/img/cold-plunge/cold-plunge-interior.png",
-      alt: "Cold Plunge - Interior",
+      url: "https://images.unsplash.com/photo-1615469066660-f597f4e1991a?w=800&auto=format&fit=crop",
+      alt: "Slate Immersion - Interior View",
       fallback: "https://images.unsplash.com/photo-1615469066660-f597f4e1991a?w=800",
     },
     {
-      url: "/img/cold-plunge/cold-plunge-setup.png",
-      alt: "Cold Plunge - Complete Setup",
+      url: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&auto=format&fit=crop",
+      alt: "Slate Immersion - Complete Setup",
       fallback: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800",
     },
   ];
