@@ -214,24 +214,46 @@ export default function InfraredSaunas() {
                   </ul>
                 </div>
 
-                {/* CTA Button */}
-                <button
-                  onClick={() => handleRequestQuote(product)}
-                  style={{
-                    width: '100%',
-                    padding: '16px 24px',
-                    fontSize: '0.9375rem',
-                    fontWeight: '500',
-                    background: 'var(--lux-text)',
-                    color: 'var(--lux-white)',
-                    border: 'none',
-                    borderRadius: '2px',
-                    cursor: 'pointer',
-                    transition: 'all 0.25s ease'
-                  }}
-                >
-                  Request a Quote
-                </button>
+                {/* CTA Buttons */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <Link
+                    href={`/products/${product.id.replace('finnmark-x-series-', 'x')}`}
+                    style={{
+                      width: '100%',
+                      padding: '16px 24px',
+                      fontSize: '0.9375rem',
+                      fontWeight: '500',
+                      background: 'var(--lux-text)',
+                      color: 'var(--lux-white)',
+                      border: 'none',
+                      borderRadius: '2px',
+                      cursor: 'pointer',
+                      transition: 'all 0.25s ease',
+                      textAlign: 'center',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    View Details →
+                  </Link>
+                  
+                  <button
+                    onClick={() => handleRequestQuote(product)}
+                    style={{
+                      width: '100%',
+                      padding: '16px 24px',
+                      fontSize: '0.9375rem',
+                      fontWeight: '500',
+                      background: 'transparent',
+                      color: 'var(--lux-text)',
+                      border: '1px solid var(--lux-text)',
+                      borderRadius: '2px',
+                      cursor: 'pointer',
+                      transition: 'all 0.25s ease'
+                    }}
+                  >
+                    Request a Quote
+                  </button>
+                </div>
 
                 <div style={{
                   marginTop: '12px',
