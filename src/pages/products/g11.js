@@ -8,6 +8,9 @@ import QuoteModal from "@/pages/components/QuoteModal";
 export default function G11Product() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showTechSpecs, setShowTechSpecs] = useState(false);
+  const [deliveryZip, setDeliveryZip] = useState('');
+  const [deliveryEstimate, setDeliveryEstimate] = useState(null);
 
   // G11 Local Assets from /img/g11/
   const productImages = [
@@ -69,27 +72,57 @@ export default function G11Product() {
     overlay: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%)'
   };
 
-  // The Three Pillars of SaunaLife - Copywriting for Emotional Connection
+  // The Sanctuary Sale - Three Pillars of Transformation
   const sensoryExperience = {
-    title: "The Sensory Experience",
-    description: "Step into a world where time slows and the senses awaken. The rich, honeyed aroma of Nordic Thermo-Spruce fills the air as golden light filters through the full-view glass door, casting warm patterns across the smooth Thermo-Aspen interior. With 22 inches of dense insulation, the silence is absolute—a sanctuary where only the crackle of cedar chips on hot stones and your own breath break the stillness. This isn't just a sauna; it's a daily meditation practice carved from Scandinavian wisdom."
+    title: "The Cellular Experience",
+    description: "Step into a world where time slows and your cells awaken. The rich, honeyed aroma of Grade-A Canadian Cedar fills the air as Far-Infrared waves penetrate deep into muscle tissue—warming you from the inside out. Golden light filters through double-paned tempered glass, casting warm patterns across hand-sanded benches. With 22 inches of dense insulation, the silence is absolute—a sanctuary where only your breath and the gentle hum of clinical-grade heaters break the stillness. This isn't just heat; it's cellular renewal."
   };
 
   const engineeringStory = {
     title: "The Engineering Story",
-    description: "Every barrel curve, every joinery joint, every bolt is engineered for 25+ years of service in extreme weather. The G11 features precision-milled Nordic spruce thermally treated at 212°C—removing sugars and resins that attract rot, insects, and decay. Stainless steel hardware resists corrosion, while the 8-person capacity and 3,196 lbs of thermal mass retain heat efficiently, reducing energy consumption. This is architecture grade wellness: built to outlive trends, spanning generations of family wellness rituals."
+    description: "Every curve, every joint, every component is engineered for 25+ years of flawless service. The G11 features precision-milled Nordic spruce thermally treated at 212°C—removing sugars and resins that attract rot, insects, and decay. But the true innovation lies in what's invisible: Ultra-Low EMF Carbon-Ceramic heating panels that deliver therapeutic heat without electromagnetic pollution. Clinical-grade safety meets architectural beauty."
   };
 
   const outcome = {
-    title: "The Outcome",
-    description: "Imagine stepping out, skin glowing, mind cleared, carrying that post-sauna glow into your evening. The G11 becomes your home's permanent wellness centerpiece—a sculptural presence in your garden that doubles as conversation starter and daily ritual. It's not just about the heat; it's about the transformation: deeper sleep, reduced stress, improved circulation, and the profound peace that comes from knowing you've built something enduring for your well-being and your family's. This is infrastructure for the soul."
+    title: "The Longevity Outcome",
+    description: "Imagine ending each day with a biological hard reset. As heat shock proteins activate and circulation surges, the accumulated stress of high-performance living melts away. The G11 isn't just wellness equipment—it's infrastructure for sustained excellence. Deeper sleep. Sharper cognition. Faster recovery. This is the architecture of longevity: a permanent wellness center in your home that compounds its benefits with every session."
+  };
+
+  // Technical specifications for toggle
+  const technicalSpecs = {
+    "Heater System": {
+      "Type": "Carbon-Ceramic Far-Infrared Panels",
+      "EMF Emission": "< 3 mG at 6 inches (Clinical-Grade)",
+      "Wavelength": "5.6 - 15 microns (Optimal therapeutic range)",
+      "Max Temperature": "170°F (77°C)",
+      "Warm-up Time": "10-15 minutes"
+    },
+    "Electrical Requirements": {
+      "Voltage": "240V / 40A dedicated circuit",
+      "Breaker": "50A GFCI (included)",
+      "Plug Type": "NEMA 14-50 (professional installation required)",
+      "Annual Operating Cost": "~$180 (daily use)"
+    },
+    "Construction & Materials": {
+      "Exterior Cladding": "Thermally-Modified Nordic Spruce (FSC Certified)",
+      "Interior Benches": "Grade-A Canadian Aspen (hypoallergenic)",
+      "Insulation": "22" R-13 thermal mass",
+      "Glass": "Double-paned tempered bronze safety glass",
+      "Hardware": "Marine-grade 316 stainless steel"
+    },
+    "Safety Certifications": {
+      "EMF Testing": "Independent lab certified <3 mG",
+      "Electrical": "ETL Listed to UL standards",
+      "Materials": "FSC Certified sustainable forestry",
+      "Water Resistance": "IPX4 rated for outdoor use"
+    }
   };
 
   return (
     <>
       <Head>
-        <title>G11 Garden Series | Lux Haven Infrastructure</title>
-        <meta name="description" content="SaunaLife G11 Garden Series - 8-Person Sanctuary. Nordic barrel architecture in Thermo-Spruce. Tempered Bronze Safety Glass. 25+ year structural warranty." />
+        <title>The Architecture of Longevity | SaunaLife G11 | Lux Haven</title>
+        <meta name="description" content="The SaunaLife G11—8-person Nordic sanctuary for cellular recovery. Carbon-ceramic infrared with ultra-low EMF. White-glove installation. Your private wellness infrastructure." />
       </Head>
 
       <div style={{ backgroundColor: '#0A0A0A', color: '#E5E5E5', minHeight: '100vh' }}>
