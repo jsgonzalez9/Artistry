@@ -51,7 +51,7 @@ export default function Products({ apiEndpoint, pageHeader }) {
                 >
                   <Image
                     src={product.image}
-                    alt="ArtistryNest Product"
+                    alt="Lux Haven Infrastructure Product"
                     width={405}
                     height={475}
                     blurDataURL="data:image/png>;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8+R8AAvcB+vBGZskAAAAASUVORK5CYII="

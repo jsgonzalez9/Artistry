@@ -96,7 +96,7 @@ function Hero() {
       <div style={{
         position: "absolute",
         inset: 0,
-        background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6))",
+        background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.4))",
         zIndex: 1
       }} />
       {/* Hero Content */}
@@ -156,7 +156,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Lux Haven Infrastructure | Architectural-Grade Wellness</title>
+        <title>Lux Haven Infrastructure | Architectural-Grade Wellness Infrastructure</title>
         <meta name="description" content="Premium sauna and cold plunge infrastructure. White-glove delivery and expert installation." />
       </Head>
 
