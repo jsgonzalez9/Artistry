@@ -95,6 +95,61 @@ export default function G11Product() {
       <div style={{ backgroundColor: '#0A0A0A', color: '#E5E5E5', minHeight: '100vh' }}>
         <Navbar />
 
+        {/* Hero Banner Image */}
+        <div style={{ 
+          position: 'relative',
+          width: '100%',
+          height: '50vh',
+          minHeight: '400px',
+          maxHeight: '600px',
+          overflow: 'hidden'
+        }}>
+          <Image
+            src="/images/products/g11-main.jpg"
+            alt="SaunaLife G11Garden Series - Premium Barrel Sauna"
+            fill
+            style={{ 
+              objectFit: 'cover',
+              filter: 'saturate(0.85) contrast(1.1) brightness(0.95)'
+            }}
+            priority
+          />
+          {/* Dark Gradient Overlay */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(10,10,10,0.3)0%, rgba(10,10,10,0.7) 100%)'
+          }} />
+          {/* Hero Text Overlay */}
+          <div style={{
+            position: 'absolute',
+            bottom: '40px',
+            left: '40px',
+            right: '40px'
+          }}>
+            <span style={{
+              fontFamily: 'Inter, sans-serif',
+              fontSize: '0.75rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#C5A059',
+              marginBottom: '8px',
+              display: 'block'
+            }}>
+              {productSpecs.series} • {productSpecs.origin}
+            </span>
+            <h1 style={{
+              fontFamily: 'Playfair Display, serif',
+              fontSize: '3rem',
+              color: '#F5F5F5',
+              margin: 0,
+              lineHeight: 1.1
+            }}>
+              {productSpecs.name}
+            </h1>
+          </div>
+        </div>
+
         <main style={{ padding: '40px 20px', maxWidth: '1400px', margin: '0 auto' }}>
           {/* Urgency Banner */}
           <div style={{
