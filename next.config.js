@@ -10,6 +10,26 @@ const nextConfig = {
           protocol: 'https',
           hostname: 'mgdkamqbxvrywiscpsvh.supabase.co',
         },
+        {
+          protocol: 'https',
+          hostname: 'myluxuryhomespa.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'saunalife.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'thesaunaplace.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'nordicasauna.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'images.unsplash.com',
+        },
       ],
     },
   }

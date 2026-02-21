@@ -73,18 +73,25 @@ export default function Saunas() {
                 boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
               }}
             >
-              {/* Product Image Placeholder */}
+              {/* Product Image */}
               <div style={{
                 height: '400px',
                 background: 'linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                position: 'relative'
+                position: 'relative',
+                overflow: 'hidden'
               }}>
-                <span style={{ color: 'var(--lux-gray)', fontSize: '1rem' }}>
-                  {product.name} - Product Image
-                </span>
+                <Image
+                  src={product.image_url}
+                  alt={product.name}
+                  fill
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center'
+                  }}
+                />
                 {product.blueprint_url && (
                   <span style={{
                     position: 'absolute',

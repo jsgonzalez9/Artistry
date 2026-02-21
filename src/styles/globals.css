@@ -2,9 +2,12 @@
   /* Lux Haven Quiet Luxury Palette */
   --lux-bg: #F9F8F4;           /* Champagne Beige - main background */
   --lux-text: #1A1A1A;         /* Jet Black - primary text */
-  --lux-gold: #AF944F;         /* Muted Gold - thin borders, icons only */
-  --lux-gold-hover: #9A8242;   /* Darker gold for hover states */
+  --lux-gold: #C5A059;         /* Champagne Gold - primary accent */
+  --lux-gold-hover: #B5924B;   /* Darker gold for hover states */
+  --lux-gold-light: #E8E0C8;   /* Light gold for subtle accents */
   --lux-white: #ffffff;
+  --lux-black: #0A0A0A;        /* Jet Black - for dark modes */
+  --lux-gray: #726E8D;         /* Muted gray-blue */
   --lux-border: #E5E4E0;       /* Subtle border color */
   
   /* Legacy colors - kept for backward compatibility */
@@ -25,6 +28,18 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
   letter-spacing: -0.02em;
   line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+/* Smooth scroll - respects reduced motion preferences */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html, body {
+    scroll-behavior: auto;
+  }
 }
 
 /* Typography - Serif for Headings, Sans for Body */
@@ -333,6 +348,45 @@ body.modal-open {
   height: 1px;
   background-color: aliceblue;
 }
+
+/* Custom Luxury Icons - SVG Styles */
+.custom-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.custom-icon.gold {
+  stroke: var(--lux-gold);
+  fill: none;
+}
+
+.custom-icon.gold-fill {
+  fill: var(--lux-gold);
+  stroke: none;
+}
+
+.custom-icon.white-fill {
+  fill: var(--lux-white);
+  stroke: none;
+}
+
+.custom-icon.white {
+  stroke: var(--lux-white);
+  fill: none;
+}
+
+.custom-icon:hover {
+  stroke: var(--lux-gold-hover);
+  fill: none;
+}
+
+/* Icon sizes */
+.icon-xs { width: 24px; height: 24px; }
+.icon-sm { width: 32px; height: 32px; }
+.icon-md { width: 40px; height: 40px; }
+.icon-lg { width: 48px; height: 48px; }
+.icon-xl { width: 64px; height: 64px; }
 .adress > * {
   display: flex;
 }

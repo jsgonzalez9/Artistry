@@ -8,15 +8,16 @@ export default function Footer() {
       padding: "60px 20px 32px",
       marginTop: "80px"
     }}>
+      {/* Main Footer Grid - 4 columns */}
       <div style={{
         maxWidth: "1200px",
         margin: "0 auto",
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+        gridTemplateColumns: "repeat(4, 1fr)",
         gap: "48px"
       }}>
         {/* Brand & Address */}
-        <div className="adress">
+        <div className="address">
           <h1 className="foot-name" style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "1.5rem",
@@ -135,20 +136,6 @@ export default function Footer() {
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             <Link 
-              href={"/about"} 
-              style={{
-                color: "#a0a0a0",
-                textDecoration: "none",
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "0.875rem",
-                transition: "color 0.2s ease"
-              }}
-              onMouseEnter={(e) => e.target.style.color = "#ffffff"}
-              onMouseLeave={(e) => e.target.style.color = "#a0a0a0"}
-            >
-              About Us
-            </Link>
-            <Link 
               href={"/contact"} 
               style={{
                 color: "#a0a0a0",
@@ -163,7 +150,7 @@ export default function Footer() {
               Contact
             </Link>
             <Link 
-              href={"/"} 
+              href={"/white-glove"} 
               style={{
                 color: "#a0a0a0",
                 textDecoration: "none",
@@ -174,10 +161,10 @@ export default function Footer() {
               onMouseEnter={(e) => e.target.style.color = "#ffffff"}
               onMouseLeave={(e) => e.target.style.color = "#a0a0a0"}
             >
-              Delivery & Installation
+              White-Glove Service
             </Link>
             <Link 
-              href={"/"} 
+              href={"/warranty"} 
               style={{
                 color: "#a0a0a0",
                 textDecoration: "none",
@@ -188,12 +175,40 @@ export default function Footer() {
               onMouseEnter={(e) => e.target.style.color = "#ffffff"}
               onMouseLeave={(e) => e.target.style.color = "#a0a0a0"}
             >
-              Privacy Policy
+              Warranty & Protection
+            </Link>
+            <Link 
+              href={"/case-studies"} 
+              style={{
+                color: "#a0a0a0",
+                textDecoration: "none",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.875rem",
+                transition: "color 0.2s ease"
+              }}
+              onMouseEnter={(e) => e.target.style.color = "#ffffff"}
+              onMouseLeave={(e) => e.target.style.color = "#a0a0a0"}
+            >
+              Case Studies
+            </Link>
+            <Link 
+              href={"/about"} 
+              style={{
+                color: "#a0a0a0",
+                textDecoration: "none",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.875rem",
+                transition: "color 0.2s ease"
+              }}
+              onMouseEnter={(e) => e.target.style.color = "#ffffff"}
+              onMouseLeave={(e) => e.target.style.color = "#a0a0a0"}
+            >
+              About Us
             </Link>
           </div>
         </div>
 
-        {/* Contact & Legal */}
+        {/* Contact Column */}
         <div className="contact">
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -205,44 +220,59 @@ export default function Footer() {
           }}>
             Contact
           </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.875rem",
-            color: "#a0a0a0",
-            lineHeight: 1.8,
-            marginBottom: "16px"
-          }}>
-            Email:{' '}
-            <a 
-              href="mailto:sales@luxhaveninfra.com" 
-              style={{ color: "#a0a0a0", textDecoration: "underline" }}
-            >
-              sales@luxhaveninfra.com
-            </a>
-          </p>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "0.75rem",
-            color: "#726e8d",
-            lineHeight: 1.6
-          }}>
-            A Division of Brand Capital LLC<br />
-            All rights reserved © {new Date().getFullYear()}
-          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.875rem",
+              color: "#a0a0a0",
+              lineHeight: 1.6,
+              margin: 0
+            }}>
+              <a 
+                href="mailto:sales@luxhaveninfra.com" 
+                style={{ color: "#a0a0a0", textDecoration: "none" }}
+                onMouseEnter={(e) => e.target.style.color = "#ffffff"}
+                onMouseLeave={(e) => e.target.style.color = "#a0a0a0"}
+              >
+                sales@luxhaveninfra.com
+              </a>
+            </p>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "0.875rem",
+              color: "#726e8d",
+              lineHeight: 1.6,
+              margin: 0,
+              marginTop: "8px"
+            }}>
+              Mon–Fri: 9am–6pm EST
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Bar */}
+      {/* Bottom Legal Bar - Full Width */}
       <div style={{
-        borderTop: "0.5px solid #333",
-        marginTop: "48px",
+        maxWidth: "1200px",
+        margin: "48px auto 0",
         paddingTop: "24px",
-        textAlign: "center"
+        borderTop: "0.5px solid #333",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
       }}>
         <p style={{
           fontFamily: "'Inter', sans-serif",
           fontSize: "0.75rem",
-          color: "#555",
+          color: "#726e8d",
+          margin: 0
+        }}>
+          A Division of Brand Capital LLC · All rights reserved © {new Date().getFullYear()}
+        </p>
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.75rem",
+          color: "#726e8d",
           margin: 0
         }}>
           White-glove delivery & installation available nationwide

@@ -14,30 +14,36 @@ export default function Checkout() {
   const [totalPrice, setTotalPrice] = useState(calculateSubtotal());
 
   async function insertOrder() {
+    // Check if user is authenticated before attempting to save order
+    if (!user || !user.id) {
+      console.warn("Cannot save order: User not authenticated");
+      // Still reset cart as payment was successful
+      resetCart();
+      return;
+    }
+
     try {
       const response = await fetch("/api/order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify([
-          {
-            transaction_id: transaction,
-            user_id: user.id,
-            total_price: totalPrice,
-          },
-        ]),
+        body: JSON.stringify({
+          transaction_id: transaction,
+          user_id: user.id,
+          total_price: totalPrice,
+          status: "completed",
+          timestamp: new Date().toISOString(),
+        }),
       });
 
-      /*  if (response.ok) {
-        console.log("Your order is pending!");
-      } else {
+      if (!response.ok) {
         console.error("Failed to insert order:", response.statusText);
       }
-      */
     } catch (error) {
       console.error("Error inserting order:", error);
     }
+
     try {
       const response = await fetch("/api/order_items", {
         method: "POST",
@@ -55,7 +61,6 @@ export default function Checkout() {
       });
 
       if (response.ok) {
-        //   console.log("Order items inserted successfully!");
         resetCart();
       } else {
         console.error("Failed to insert order items:", response.statusText);
@@ -86,7 +91,8 @@ export default function Checkout() {
   return (
     <>
       <Head>
-        <title>Checkout | ArtistryNest</title>
+        <title>Checkout | Lux Haven Infrastructure</title>
+        <meta name="description" content="Complete your purchase with secure PayPal checkout. White-glove delivery and installation for luxury saunas and cold plunges." />
       </Head>
       <div className="checkout">
         <div className="checkout-summary">
@@ -108,7 +114,7 @@ export default function Checkout() {
                       />
                       <div className="checkout-cart-product-description">
                         <h1>{item.product_name}</h1>
-                        <a>£{item.price}</a>
+                        <a>${item.price}</a>
                       </div>
                     </div>
                   </div>
@@ -120,7 +126,7 @@ export default function Checkout() {
                     </p>
                     <p>
                       Total
-                      <br />£{item.price * item.count}
+                      <br />${item.price * item.count}
                     </p>
                   </div>
                 </div>
@@ -129,11 +135,11 @@ export default function Checkout() {
           </div>
         </div>
         <div className="checkout-pay">
-          <h2>Subtotal £{calculateSubtotal()}</h2>
+          <h2>Subtotal ${calculateSubtotal().toLocaleString()}</h2>
           <PayPalScriptProvider
             options={{
-              "client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
-              currency: "GBP",
+              clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+              currency: "USD",
               intent: "capture",
             }}
           >
@@ -208,7 +214,7 @@ export default function Checkout() {
                     const transaction =
                       orderData.purchase_units[0].payments.captures[0];
                     toast.success(
-                      `Transaction ${transaction.status}: ${transaction.id}.`
+                      `Payment successful! Transaction ID: ${transaction.id.slice(0, 12)}...`
                     );
                     setTransaction(transaction.id);
                   }

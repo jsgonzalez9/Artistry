@@ -19,6 +19,7 @@ interface FormData {
   message: string;
   timeline: string;
   howDidYouHear: string;
+  budgetRange?: string;
 }
 
 interface FormErrors {
@@ -280,6 +281,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
     message: "",
     timeline: "",
     howDidYouHear: "",
+    budgetRange: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -425,6 +427,7 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
             message: "",
             timeline: "",
             howDidYouHear: "",
+            budgetRange: "",
           });
           onClose();
         }, FORM_CONFIG.successAutoCloseDelay);
@@ -675,11 +678,11 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
                       onChange={handleChange}
                     >
                       <option value="">Select a product</option>
-                      <option value="SaunaLife Thermo-Spruce Barrel Sauna">SaunaLife Thermo-Spruce Barrel Sauna</option>
-                      <option value="Finnmark Designs Sauna">Finnmark Designs Sauna</option>
-                      <option value="Cold Plunge">Cold Plunge</option>
-                      <option value="Marine Tech / Lithium Power Systems">Marine Tech / Lithium Power Systems</option>
-                      <option value="Custom Package">Custom Package</option>
+                      <option value="G11 Garden Series - $14,990">G11 Garden Series - $14,990</option>
+                      <option value="G4 Garden Series - $9,490">G4 Garden Series - $9,490</option>
+                      <option value="X-Series Indoor (X2/X3/X6) - $4,295+">X-Series Indoor (X2/X3/X6) - $4,295+</option>
+                      <option value="Cold Plunge - $5,995">Cold Plunge - $5,995</option>
+                      <option value="Multiple Products / Custom Package">Multiple Products / Custom Package</option>
                     </Select>
                   </FormGroup>
 
@@ -701,8 +704,27 @@ const QuoteModal: React.FC<QuoteModalProps> = ({
                   </FormGroup>
 
                   <FormGroup>
+                    <Label htmlFor="budgetRange">
+                      Budget Range <span aria-hidden="true">*</span>
+                    </Label>
+                    <Select
+                      id="budgetRange"
+                      name="budgetRange"
+                      value={formData.budgetRange || ""}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">Select your budget</option>
+                      <option value="$5,000 - $7,500">$5,000 - $7,500</option>
+                      <option value="$7,500 - $10,000">$7,500 - $10,000</option>
+                      <option value="$10,000 - $15,000">$10,000 - $15,000</option>
+                      <option value="$15,000+">$15,000+</option>
+                    </Select>
+                  </FormGroup>
+
+                  <FormGroup>
                     <Label htmlFor="timeline">
-                      When are you looking to purchase?
+                      Project Timeline
                     </Label>
                     <Select
                       id="timeline"
