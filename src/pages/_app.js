@@ -1,7 +1,8 @@
 import "../styles/globals.css";
-import { useState } from "react";
+import { CartProvider } from "@/context/CartContext";
+import { SearchProvider } from "@/context/SearchContext";
 
-// Minimal Layout - no Supabase, no cart context
+// Minimal Layout with Context providers
 function MinimalLayout({ children }) {
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
@@ -14,8 +15,12 @@ function MinimalLayout({ children }) {
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <MinimalLayout>
-      <Component {...pageProps} />
-    </MinimalLayout>
+    <SearchProvider>
+      <CartProvider>
+        <MinimalLayout>
+          <Component {...pageProps} />
+        </MinimalLayout>
+      </CartProvider>
+    </SearchProvider>
   );
 }
