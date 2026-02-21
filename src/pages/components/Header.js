@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useCart } from "@/context/CartContext";
 import { useSearch } from "@/context/SearchContext";
 import { useRouter as useRouterDefault } from "next/router";
 import { useRouter as useRouterNavigation } from "next/navigation";
@@ -12,9 +10,8 @@ import userIcon from "@/pages/icons/User--avatar.svg";
 import { deleteCookie } from "cookies-next";
 
 export default function Header() {
-  const { cart } = useCart();
   const router = useRouterDefault();
-  const routerNaviagtion = useRouterNavigation();
+  const routerNavigation = useRouterNavigation();
   const { searchQuery, updateSearchQuery } = useSearch();
   const [accountModal, setAccountModal] = useState(false);
   const [isSearchVisible, setSearchVisible] = useState(false);
@@ -24,7 +21,7 @@ export default function Header() {
   const handleLogout = async () => {
     let { error } = await supabaseClient.auth.signOut();
     deleteCookie("userId");
-    routerNaviagtion.refresh();
+    routerNavigation.refresh();
   };
 
   function handleInputQuery(e) {
@@ -32,22 +29,10 @@ export default function Header() {
     updateSearchQuery(query);
   }
 
-  const handleCartIconClick = () => {
-    router.push({
-      pathname: "/cart",
-      query: {
-        count: cart.count,
-        items: cart.items
-          .map((item) => `${item.productId}-${item.count}`)
-          .join(","),
-      },
-    });
-  };
-
   useEffect(() => {
     const handleRouteChange = (url) => {
       setAccountModal(false);
-      if (url && !url.includes("/products/all")) {
+      if (url && !url.includes("/products/")) {
         setSearchVisible(false);
         updateSearchQuery("");
       }
@@ -61,17 +46,6 @@ export default function Header() {
   }, [router]);
 
   const handleSearchIconClick = () => {
-    const trimmedQuery = searchQuery.trim();
-    if (!isSearchVisible && trimmedQuery !== "") {
-      updateSearchQuery(trimmedQuery);
-    } else if (trimmedQuery !== "") {
-      setSearchVisible(true);
-      router.push({
-        pathname: "/products/all",
-        query: { searchQuery: trimmedQuery },
-      });
-      return;
-    }
     setSearchVisible(!isSearchVisible);
   };
 
@@ -82,11 +56,7 @@ export default function Header() {
   };
 
   const handleAccountModal = () => {
-    if (accountModal) {
-      setAccountModal(false);
-    } else {
-      setAccountModal(true);
-    }
+    setAccountModal(!accountModal);
   };
 
   const handleOutsideClick = (e) => {
@@ -109,96 +79,65 @@ export default function Header() {
 
   return (
     <>
-      <div className="name">
-        <h1>
-          <Link href={"/"}>ArtistryNest</Link>
+      {/* Brand Header */}
+      <div className="name" style={{
+        textAlign: "center",
+        padding: "24px 0",
+        borderBottom: "0.5px solid #E5E4E0"
+      }}>
+        <h1 style={{
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontSize: "clamp(1.5rem, 3vw, 2rem)",
+          fontWeight: 600,
+          color: "#1A1A1A",
+          letterSpacing: "-0.02em",
+          margin: 0
+        }}>
+          <Link href={"/"} style={{ textDecoration: "none", color: "#1A1A1A" }}>
+            LUX HAVEN
+          </Link>
         </h1>
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "0.75rem",
+          color: "#726e8d",
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+          marginTop: "4px"
+        }}>
+          Infrastructure
+        </p>
       </div>
-      <div className="top-right">
-        <h2 className="about">
-          <Link href={"/about"}>About us</Link>
+
+      {/* Secondary Navigation */}
+      <div className="top-right" style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "32px",
+        padding: "16px 0",
+        borderBottom: "0.5px solid #E5E4E0",
+        fontFamily: "'Inter', sans-serif",
+        fontSize: "0.875rem"
+      }}>
+        <h2 className="about" style={{ margin: 0, fontWeight: 500 }}>
+          <Link href={"/about"} style={{ color: "#1A1A1A", textDecoration: "none" }}>
+            About
+          </Link>
         </h2>
-        <h2 className="contact">
-          <Link href={"/contact"}>Contact</Link>
+        <h2 className="contact" style={{ margin: 0, fontWeight: 500 }}>
+          <Link href={"/contact"} style={{ color: "#1A1A1A", textDecoration: "none" }}>
+            Contact
+          </Link>
         </h2>
-        {isSearchVisible && (
-          <div className="search-input-container">
-            <input
-              onChange={handleInputQuery}
-              value={searchQuery}
-              type="text"
-              name="search"
-              placeholder="Search for an item"
-            />
-          </div>
-        )}
-        <div className="searchIcon">
-          <Image
-            src={searchIcon}
-            onClick={handleSearchIconClick}
-            alt="Search"
-          />
-          <Image src={cartIcon} onClick={handleCartIconClick} alt="Cart" />
-          {cart.count > 0 && (
-            <span onClick={handleCartIconClick} className="cart-count">
-              {cart.count}
-            </span>
-          )}
-          <div className="account">
-            <Image src={userIcon} alt="Account" onClick={handleAccountModal} />
-            <div className={`account-modal ${accountModal ? "active" : ""}`}>
-              {user ? (
-                <div className="account-info">
-                  <div className="account-login">
-                    {user.user_metadata.full_name}
-                  </div>
-                  <Link href={"/account"}>
-                    <div className="account-login">Account</div>
-                  </Link>
-                  <button onClick={handleLogout}>Log out</button>
-                </div>
-              ) : (
-                <div className="account-signup">
-                  <Link href={"/login"}>
-                    <div className="account-login">Log in</div>
-                  </Link>
-                  <Link href={"/signup"}>
-                    <div className="account-login">Sign up</div>
-                  </Link>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bottom-nav">
-        <h2>
-          <div>
-            <Link href="/products/all" as="/products/all" passHref>
-              <span onClick={handleAllPageLinkClick}>All products</span>
-            </Link>
-          </div>
+        <h2 className="products" style={{ margin: 0, fontWeight: 500 }}>
+          <Link href={"/products/saunas"} style={{ color: "#1A1A1A", textDecoration: "none" }}>
+            Saunas
+          </Link>
         </h2>
-        <h2>
-          <Link href={"/products/chairs"}>Chairs</Link>
-        </h2>
-        <h2>
-          <Link href={"/products/tables"}>Tables</Link>
-        </h2>
-        <h2>
-          <Link href={"/products/sofas"}>Sofas</Link>
-        </h2>
-        <h2>
-          <Link href={"/products/lamps"}>Lamps</Link>
-        </h2>
-        <h2>
-          <Link href={"/products/crockery"}>Crockery</Link>
-        </h2>
-        <h2>
-          <Link href={"/products/ceramics"}>Ceramics</Link>
-        </h2>
-        <h2>
-          <Link href={"/products/pots"}>Plant pots</Link>
+        <h2 className="products" style={{ margin: 0, fontWeight: 500 }}>
+          <Link href={"/products/infrared"} style={{ color: "#1A1A1A", textDecoration: "none" }}>
+            Infrared
+          </Link>
         </h2>
       </div>
     </>

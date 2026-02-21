@@ -10,16 +10,18 @@ export default function Layout({ children }) {
   return (
     <>
       <Head>
-        <title>ArtistryNest</title>
-        <meta name="description" content="Ecommerce site Miloua Mokhtar" />
+        <title>Lux Haven Infrastructure | Architectural-Grade Wellness</title>
+        <meta name="description" content="Premium sauna and cold plunge infrastructure. White-glove delivery and expert installation for High-HHI residential and commercial projects." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          property="og:image"
-          content="https://i1.sndcdn.com/avatars-dtgHaUZPb1l7U5RX-ly3X3w-t500x500.jpg"
-        />
-        <meta name="theme-color" content="#22202e" />
+        <meta name="theme-color" content="#1A1A1A" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
+        
+        {/* Open Graph / Social */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Lux Haven Infrastructure" />
+        <meta property="og:description" content="Architectural-grade wellness infrastructure for luxury homes and hospitality." />
+        <meta property="og:image" content="/og-image.png" />
       </Head>
       <SearchProvider>
         <CartProvider>
