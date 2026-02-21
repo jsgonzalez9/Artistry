@@ -7,9 +7,23 @@ const userId = getCookie("userId") || uuidv4();
 
 setCookie("userId", userId);
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Lazy initialization to avoid client creation during SSR
+let supabaseClient = null;
+
+function getSupabaseClient() {
+  if (!supabaseClient) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    
+    if (!supabaseUrl || !supabaseKey) {
+      console.warn("Supabase credentials not configured. Features requiring database will not work.");
+      return null;
+    }
+    
+    supabaseClient = createClient(supabaseUrl, supabaseKey);
+  }
+  return supabaseClient;
+}
 
 const CartContext = createContext();
 
@@ -20,6 +34,11 @@ export function CartProvider({ children }) {
   const [isResetCart, SetIsResetCart] = useState(false);
 
   async function CookiesUpdate() {
+    const supabase = getSupabaseClient();
+    if (!supabase) {
+      console.warn("Supabase not available, skipping CookiesUpdate");
+      return;
+    }
     const { data: data, error } = await supabase
       .from("cookies")
       .update({
@@ -31,6 +50,11 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
+      const supabase = getSupabaseClient();
+      if (!supabase) {
+        console.warn("Supabase not available, skipping fetchData");
+        return;
+      }
       try {
         const { data, error } = await supabase
           .from("cookies")
