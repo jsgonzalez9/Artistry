@@ -1,0 +1,176 @@
+{
+  "brand": "OxyNova",
+  "origin": "Canada",
+  "category": "Hyperbaric Oxygen Chambers",
+  "series": "Professional Series",
+  "lastUpdated": "2026-02-21",
+  "positioning": {
+    "tagline": "Oxygen Infrastructure for Cellular Renewal",
+    "narrative": "Fire, Ice, and Air — The Complete Recovery Circuit",
+    "luxuryHook": "Your personal atmospheric sanctuary for mitochondrial repair"
+  },
+  "products": [
+    {
+      "name": "OxyNova 7",
+      "model": "ON-7",
+      "subtitle": "The Personal Restoration Suite",
+      "capacity": 1,
+      "pressure": "1.4 ATA",
+      "pressurePSI": "5.8 PSI",
+      "oxygenConcentration": "95%+",
+      "dimensions": {
+        "exterior": {
+          "length": "84 inches",
+          "diameter": "32 inches"
+        },
+        "interior": {
+          "length": "78 inches",
+          "diameter": "28 inches"
+        }
+      },
+      "weight": {
+        "unit": "35 lbs",
+        " shipping": "45 lbs"
+      },
+      "materials": {
+        "chamber": "Medical-grade TPU (Thermoplastic Polyurethane)",
+        "windows": "Triple-layered aerospace-grade polymer",
+        "frame": "Aircraft aluminum (military-grade 7075)",
+        "connections": "Brass quick-connect fittings"
+      },
+      "compressor": {
+        "type": "Oil-free medical grade",
+        "noiseLevel": "<55 dB",
+        "power": "650W",
+        "voltage": "110V/220V auto-switching"
+      },
+      "features": [
+        "Triple-layered window system",
+        "Medical-grade air filtration",
+        "Emergency pressure release valve",
+        "Internal pressure gauge",
+        "Deluxe comfort mattress",
+        "External control panel",
+        "Transportation bag included",
+        "Lifetime warranty on seams"
+      ],
+      "safety": {
+        "certifications": ["FDA Class II Medical Device", "ISO 13485", "CE Marked"],
+        "pressureRelief": "Dual redundant safety valves",
+        "emergency": "Internal quick-release zipper"
+      },
+      "warranty": {
+        "chamber": "Lifetime",
+        "compressor": "3 years",
+        "accessories": "1 year"
+      },
+      "pricing": {
+        "msrp": "$12,995",
+        "monthlyPayment": "$389/mo",
+        "setup": "$1,500 (White-glove included)"
+      },
+      "leadTime": "14 days",
+      "images": {
+        "hero": "/img/oxynova/on7-hero.jpg",
+        "lifestyle": ["/img/oxynova/on7-lifestyle-1.jpg", "/img/oxynova/on7-lifestyle-2.jpg"],
+        "technical": "/img/oxynova/on7-technical.jpg"
+      },
+      "usp": "Daily wellness protocols and anti-aging. Portable enough for secondary residences.",
+      "luxuryPositioning": "Your personal atmospheric sanctuary for mitochondrial repair"
+    },
+    {
+      "name": "OxyNova 9",
+      "model": "ON-9",
+      "subtitle": "The Professional Lounge",
+      "capacity": 2,
+      "pressure": "1.4 ATA",
+      "pressurePSI": "5.8 PSI",
+      "oxygenConcentration": "95%+",
+      "dimensions": {
+        "exterior": {
+          "length": "96 inches",
+          "diameter": "40 inches"
+        },
+        "interior": {
+          "length": "90 inches",
+          "diameter": "36 inches"
+        }
+      },
+      "weight": {
+        "unit": "55 lbs",
+        "shipping": "72 lbs"
+      },
+      "materials": {
+        "chamber": "Medical-grade TPU with antimicrobial coating",
+        "windows": "10 triple-layered panoramic windows",
+        "frame": "Aircraft aluminum (military-grade 7075)",
+        "connections": "Brass quick-connect fittings with filters"
+      },
+      "compressor": {
+        "type": "Dual oil-free medical grade",
+        "noiseLevel": "<50 dB",
+        "power": "900W",
+        "voltage": "110V/220V auto-switching"
+      },
+      "features": [
+        "10 panoramic windows (non-claustrophobic design)",
+        "Medical-grade air filtration with HEPA",
+        "Dual-zone climate control",
+        "Emergency pressure release valve (x2)",
+        "Internal pressure gauge with backlight",
+        "Deluxe dual comfort mattress",
+        "External and internal control panels",
+        "Professional-grade transportation case",
+        "Lifetime warranty on seams"
+      ],
+      "safety": {
+        "certifications": ["FDA Class II Medical Device", "ISO 13485", "CE Marked", "Health Canada Approved"],
+        "pressureRelief": "Triple redundant safety valves",
+        "emergency": "Internal quick-release zipper with glow-in-dark pull"
+      },
+      "warranty": {
+        "chamber": "Lifetime",
+        "compressor": "5 years",
+        "accessories": "2 years"
+      },
+      "pricing": {
+        "msrp": "$18,995",
+        "monthlyPayment": "$549/mo",
+        "setup": "Included (White-glove)"
+      },
+      "leadTime": "14-21 days",
+      "images": {
+        "hero": "/img/oxynova/on9-hero.jpg",
+        "lifestyle": ["/img/oxynova/on9-lifestyle-1.jpg", "/img/oxynova/on9-lifestyle-2.jpg"],
+        "technical": "/img/oxynova/on9-technical.jpg"
+      },
+      "usp": "Couples, families, and professional performance centers. Social healing environment.",
+      "luxuryPositioning": "A social healing environment where time—and aging—decelerates"
+    }
+  ],
+  "clinicalBenefits": [
+    "Accelerated wound healing (3-5x faster)",
+    "Reduced inflammation and oxidative stress",
+    "Enhanced mitochondrial ATP production",
+    "Improved cognitive function and neuroplasticity",
+    "Stem cell mobilization and tissue regeneration",
+    "Collagen synthesis for skin rejuvenation",
+    "Post-surgical recovery acceleration",
+    "Altitude acclimation support"
+  ],
+  "seoKeywords": [
+    "1.4 ATA hyperbaric chamber for home use",
+    "OxyNova 7 vs OxyNova 9 comparison",
+    "Soft-shell hyperbaric chamber luxury",
+    "Hyperbaric oxygen therapy anti-aging",
+    "Portable hyperbaric chamber Connecticut",
+    "Altitude acclimation hyperbaric chamber Aspen",
+    "Mild hyperbaric chamber professional"
+  ],
+  "dealerProgram": {
+    "minimumOrder": "$25,000",
+    "margin": "35-40%",
+    "training": "Certified hyperbaric technician course included",
+    "support": "24/7 clinical support line"
+  }
+}
