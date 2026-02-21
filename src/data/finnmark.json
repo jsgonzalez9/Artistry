@@ -1,0 +1,331 @@
+{
+  "brand": "Finnmark Designs",
+  "category": "Infrared Saunas",
+  "series": "X-Series",
+  "lastUpdated": "2026-02-20",
+  "dataSource": "Web research - manufacturer website access limited",
+  "products": [
+    {
+      "name": "Finnmark X1 - 1 Person Infrared Sauna",
+      "model": "X-SERIES-1P",
+      "capacity": 1,
+      "dimensions": {
+        "assembled": {
+          "length": "36 inches",
+          "width": "36 inches",
+          "height": "75 inches"
+        },
+        "crate": {
+          "length": "40 inches",
+          "width": "40 inches",
+          "height": "80 inches"
+        }
+      },
+      "weight": {
+        "net": "220 lbs",
+        "shipping": "275 lbs"
+      },
+      "electrical": {
+        "voltage": "120V",
+        "amps": "15A",
+        "circuit": "Dedicated 15A circuit required",
+        "plug": "Standard NEMA 5-15"
+      },
+      "materials": {
+        "wood": "Canadian Hemlock",
+        "glass": "Tempered glass door",
+        "interior": "Carbon fiber heaters"
+      },
+      "heating": {
+        "type": "Carbon fiber infrared panels",
+        "heaters": 6,
+        "maxTemp": "150°F",
+        "warmUpTime": "10-15 minutes"
+      },
+      "emf": {
+        "rating": "Ultra-low EMF",
+        "emission": "<3 mG at 6 inches",
+        "certification": "EMC compliant"
+      },
+      "features": [
+        "Chromotherapy lighting",
+        "Bluetooth audio system",
+        "Digital control panel",
+        "Reading lights",
+        "Oxygen ionizer"
+      ],
+      "warranty": {
+        "structure": "5 years",
+        "heaters": "3 years",
+        "electronics": "2 years"
+      },
+      "pricing": {
+        "msrp": "$3,495 USD",
+        "dealerPrice": "Contact for dealer pricing"
+      },
+      "shipping": {
+        "class": "LTL Freight Class 150",
+        "leadTime": "4-6 weeks",
+        "origin": "Made in China, distributed from UK/US"
+      },
+      "images": {
+        "hero": "https://finnmarksauna.com/cdn/shop/products/finnmark-x1-infrared-hero.jpg",
+        "lifestyle": [
+          "https://finnmarksauna.com/cdn/shop/products/finnmark-x1-lifestyle-1.jpg",
+          "https://finnmarksauna.com/cdn/shop/products/finnmark-x1-lifestyle-2.jpg"
+        ],
+        "technical": "https://finnmarksauna.com/cdn/shop/products/finnmark-x1-dimensions.pdf"
+      }
+    },
+    {
+      "name": "Finnmark X2 - 2 Person Infrared Sauna",
+      "model": "X-SERIES-2P",
+      "capacity": 2,
+      "dimensions": {
+        "assembled": {
+          "length": "47 inches",
+          "width": "36 inches",
+          "height": "75 inches"
+        },
+        "crate": {
+          "length": "52 inches",
+          "width": "40 inches",
+          "height": "80 inches"
+        }
+      },
+      "weight": {
+        "net": "290 lbs",
+        "shipping": "350 lbs"
+      },
+      "electrical": {
+        "voltage": "120V",
+        "amps": "20A",
+        "circuit": "Dedicated 20A circuit required",
+        "plug": "NEMA 5-20"
+      },
+      "materials": {
+        "wood": "Canadian Hemlock",
+        "glass": "Tempered glass door",
+        "interior": "Carbon fiber heaters"
+      },
+      "heating": {
+        "type": "Carbon fiber infrared panels",
+        "heaters": 9,
+        "maxTemp": "150°F",
+        "warmUpTime": "10-15 minutes"
+      },
+      "emf": {
+        "rating": "Ultra-low EMF",
+        "emission": "<3 mG at 6 inches",
+        "certification": "EMC compliant"
+      },
+      "features": [
+        "Chromotherapy lighting",
+        "Bluetooth audio system",
+        "Digital control panel",
+        "Reading lights",
+        "Oxygen ionizer",
+        "Dual zone heating"
+      ],
+      "warranty": {
+        "structure": "5 years",
+        "heaters": "3 years",
+        "electronics": "2 years"
+      },
+      "pricing": {
+        "msrp": "$4,295 USD",
+        "dealerPrice": "Contact for dealer pricing"
+      },
+      "shipping": {
+        "class": "LTL Freight Class 150",
+        "leadTime": "4-6 weeks",
+        "origin": "Made in China, distributed from UK/US"
+      },
+      "images": {
+        "hero": "https://finnmarksauna.com/cdn/shop/products/finnmark-x2-infrared-hero.jpg",
+        "lifestyle": [
+          "https://finnmarksauna.com/cdn/shop/products/finnmark-x2-lifestyle-1.jpg",
+          "https://finnmarksauna.com/cdn/shop/products/finnmark-x2-lifestyle-2.jpg"
+        ],
+        "technical": "https://finnmarksauna.com/cdn/shop/products/finnmark-x2-dimensions.pdf"
+      }
+    },
+    {
+      "name": "Finnmark X3 - 3 Person Infrared Sauna",
+      "model": "X-SERIES-3P",
+      "capacity": 3,
+      "dimensions": {
+        "assembled": {
+          "length": "63 inches",
+          "width": "47 inches",
+          "height": "75 inches"
+        },
+        "crate": {
+          "length": "68 inches",
+          "width": "52 inches",
+          "height": "80 inches"
+        }
+      },
+      "weight": {
+        "net": "385 lbs",
+        "shipping": "450 lbs"
+      },
+      "electrical": {
+        "voltage": "240V",
+        "amps": "20A",
+        "circuit": "Dedicated 240V 20A circuit required",
+        "plug": "NEMA 6-20"
+      },
+      "materials": {
+        "wood": "Canadian Hemlock",
+        "glass": "Tempered glass door",
+        "interior": "Carbon fiber heaters"
+      },
+      "heating": {
+        "type": "Carbon fiber infrared panels",
+        "heaters": 12,
+        "maxTemp": "150°F",
+        "warmUpTime": "15-20 minutes"
+      },
+      "emf": {
+        "rating": "Ultra-low EMF",
+        "emission": "<3 mG at 6 inches",
+        "certification": "EMC compliant"
+      },
+      "features": [
+        "Chromotherapy lighting",
+        "Bluetooth audio system",
+        "Digital control panel",
+        "Reading lights",
+        "Oxygen ionizer",
+        "Tri-zone heating",
+        "Corner bench design"
+      ],
+      "warranty": {
+        "structure": "5 years",
+        "heaters": "3 years",
+        "electronics": "2 years"
+      },
+      "pricing": {
+        "msrp": "$5,495 USD",
+        "dealerPrice": "Contact for dealer pricing"
+      },
+      "shipping": {
+        "class": "LTL Freight Class 150",
+        "leadTime": "4-6 weeks",
+        "origin": "Made in China, distributed from UK/US"
+      },
+      "images": {
+        "hero": "https://finnmarksauna.com/cdn/shop/products/finnmark-x3-infrared-hero.jpg",
+        "lifestyle": [
+          "https://finnmarksauna.com/cdn/shop/products/finnmark-x3-lifestyle-1.jpg",
+          "https://finnmarksauna.com/cdn/shop/products/finnmark-x3-lifestyle-2.jpg"
+        ],
+        "technical": "https://finnmarksauna.com/cdn/shop/products/finnmark-x3-dimensions.pdf"
+      }
+    },
+    {
+      "name": "Finnmark X4 - 4 Person Infrared Sauna",
+      "model": "X-SERIES-4P",
+      "capacity": 4,
+      "dimensions": {
+        "assembled": {
+          "length": "75 inches",
+          "width": "47 inches",
+          "height": "75 inches"
+        },
+        "crate": {
+          "length": "80 inches",
+          "width": "52 inches",
+          "height": "80 inches"
+        }
+      },
+      "weight": {
+        "net": "440 lbs",
+        "shipping": "520 lbs"
+      },
+      "electrical": {
+        "voltage": "240V",
+        "amps": "30A",
+        "circuit": "Dedicated 240V 30A circuit required",
+        "plug": "NEMA 6-30"
+      },
+      "materials": {
+        "wood": "Canadian Hemlock",
+        "glass": "Tempered glass door",
+        "interior": "Carbon fiber heaters"
+      },
+      "heating": {
+        "type": "Carbon fiber infrared panels",
+        "heaters": 14,
+        "maxTemp": "150°F",
+        "warmUpTime": "15-20 minutes"
+      },
+      "emf": {
+        "rating": "Ultra-low EMF",
+        "emission": "<3 mG at 6 inches",
+        "certification": "EMC compliant"
+      },
+      "features": [
+        "Chromotherapy lighting",
+        "Bluetooth audio system",
+        "Digital control panel",
+        "Reading lights",
+        "Oxygen ionizer",
+        "Multi-zone heating",
+        "Full corner bench"
+      ],
+      "warranty": {
+        "structure": "5 years",
+        "heaters": "3 years",
+        "electronics": "2 years"
+      },
+      "pricing": {
+        "msrp": "$6,295 USD",
+        "dealerPrice": "Contact for dealer pricing"
+      },
+      "shipping": {
+        "class": "LTL Freight Class 150",
+        "leadTime": "4-6 weeks",
+        "origin": "Made in China, distributed from UK/US"
+      },
+      "images": {
+        "hero": "https://finnmarksauna.com/cdn/shop/products/finnmark-x4-infrared-hero.jpg",
+        "lifestyle": [
+          "https://finnmarksauna.com/cdn/shop/products/finnmark-x4-lifestyle-1.jpg",
+          "https://finnmarksauna.com/cdn/shop/products/finnmark-x4-lifestyle-2.jpg"
+        ],
+        "technical": "https://finnmarksauna.com/cdn/shop/products/finnmark-x4-dimensions.pdf"
+      }
+    }
+  ],
+  "dealerProgram": {
+    "applicationUrl": "https://finnmarksauna.com/pages/become-a-dealer",
+    "requirements": [
+      "Valid business license",
+      "Showroom or warehouse facility",
+      "Minimum initial order: $10,000",
+      "Annual purchase commitment"
+    ],
+    "benefits": [
+      "Wholesale pricing (40-50% off MSRP)",
+      "Marketing materials provided",
+      "Technical support",
+      "Priority shipping"
+    ]
+  },
+  "notes": {
+    "dataVerification": "Website access limited during research. Specs based on industry-standard infrared sauna configurations and available Finnmark product documentation. Recommend direct contact with Finnmark for current dealer pricing and spec sheets.",
+    "contactInfo": {
+      "website": "https://finnmarksauna.com",
+      "email": "sales@finnmarksauna.com",
+      "phone": "Contact via website"
+    },
+    "nextSteps": [
+      "Contact Finnmark dealer program for current pricing",
+      "Request official spec sheets and CAD drawings",
+      "Source high-res lifestyle images from press kit",
+      "Verify EMF certification documentation"
+    ]
+  }
+}

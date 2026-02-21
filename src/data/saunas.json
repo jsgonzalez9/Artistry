@@ -1,0 +1,72 @@
+{
+  "manufacturer": "SaunaLife",
+  "series": "Garden (G-Series)",
+  "description": "Architectural-grade Thermo-Spruce barrel saunas engineered for extreme weather resistance and 25+ year lifespan. The G-Series represents the gold standard in outdoor wellness infrastructure.",
+  "models": [
+    {
+      "id": "G11",
+      "name": "Garden Series G11 Panoramic",
+      "weight_lbs": 3196,
+      "dimensions": "196\" x 47\" x 47\" (Crate Size)",
+      "electrical": "240v / 40-50 Amp Dedicated Circuit",
+      "material": "Thermo-Spruce (Architectural Grade)",
+      "capacity": "6-8 Persons",
+      "shipping_class": "LTL Freight - Class 150",
+      "price_msrp": 14995,
+      "price_dealer": 10496,
+      "margin_percent": 30,
+      "lead_time_weeks": "6-8",
+      "warranty_years": 5,
+      "features": [
+        "Panoramic full-view glass door",
+        "Thermo-treated Nordic spruce (212°C treatment)",
+        "Stainless steel hardware",
+        "Integrated ventilation system",
+        "Weather-resistant design for extreme climates",
+        "Pre-assembled modules for faster installation"
+      ],
+      "installation_requirements": {
+        "pad_size": "16' x 6' reinforced concrete or paver base",
+        "clearance_height": "10 feet minimum overhead clearance",
+        "electrical_distance": "Electrician required within 15 feet of unit",
+        "access_width": "Minimum 5 feet gate/pathway for delivery"
+      },
+      "blueprint_url": "/blueprints/saunalife-g11-panoramic.pdf",
+      "image_url": "/img/saunas/saunalife-g11-panoramic.jpg"
+    },
+    {
+      "id": "G4",
+      "name": "Garden Series G4 Cube",
+      "weight_lbs": 1850,
+      "dimensions": "96\" x 96\" x 98\"",
+      "electrical": "240v / 30 Amp",
+      "material": "Thermo-Spruce",
+      "capacity": "4 Persons",
+      "shipping_class": "LTL Freight - Class 150",
+      "price_msrp": 9995,
+      "price_dealer": 6996,
+      "margin_percent": 30,
+      "lead_time_weeks": "4-6",
+      "warranty_years": 5,
+      "features": [
+        "Modern cube design",
+        "Thermo-treated Nordic spruce",
+        "Compact footprint for smaller spaces",
+        "Integrated ventilation",
+        "Weather-resistant construction",
+        "Pre-assembled modules"
+      ],
+      "installation_requirements": {
+        "pad_size": "10' x 10' reinforced concrete or paver base",
+        "clearance_height": "9 feet minimum overhead clearance",
+        "electrical_distance": "Electrician required within 15 feet of unit",
+        "access_width": "Minimum 4 feet gate/pathway for delivery"
+      },
+      "blueprint_url": "/blueprints/saunalife-g4-cube.pdf",
+      "image_url": "/img/saunas/saunalife-g4-cube.jpg"
+    }
+  ],
+  "shipping_notes": "All units ship via LTL freight with liftgate service. White-glove threshold delivery available. Professional assembly coordination recommended.",
+  "certifications": ["CE", "ETL", "UL Listed Components"],
+  "country_of_origin": "Estonia / Finland"
+}
