@@ -164,6 +164,20 @@ export default function Footer() {
               White-Glove Service
             </Link>
             <Link 
+              href={"/faq"} 
+              style={{
+                color: "#a0a0a0",
+                textDecoration: "none",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.875rem",
+                transition: "color 0.2s ease"
+              }}
+              onMouseEnter={(e) => e.target.style.color = "#ffffff"}
+              onMouseLeave={(e) => e.target.style.color = "#a0a0a0"}
+            >
+              FAQ
+            </Link>
+            <Link 
               href={"/warranty"} 
               style={{
                 color: "#a0a0a0",
