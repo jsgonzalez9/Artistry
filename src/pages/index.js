@@ -1,4 +1,6 @@
 import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 
 // Minimal Header Component
 function Header() {
@@ -68,65 +70,99 @@ function Footer() {
   );
 }
 
+// Hero Component with Real Architectural Image
+function Hero() {
+  return (
+    <section style={{
+      position: "relative",
+      height: "100vh",
+      overflow: "hidden",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }}>
+      {/* The Actual Image - Optimized for LCP */}
+      <Image
+        src="/artnest.jpg"
+        alt="Architectural Sauna Installation - Luxury Wellness Infrastructure"
+        fill
+        priority
+        style={{
+          objectFit: "cover",
+          objectPosition: "center"
+        }}
+      />
+      {/* The Luxury Overlay - Makes text readable */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        background: "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6))",
+        zIndex: 1
+      }} />
+      {/* Hero Content */}
+      <div style={{
+        position: "relative",
+        zIndex: 2,
+        color: "#ffffff",
+        textAlign: "center",
+        padding: "0 20px",
+        maxWidth: "900px"
+      }}>
+        <h1 style={{
+          fontFamily: "'Playfair Display', serif",
+          fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+          fontWeight: 600,
+          letterSpacing: "-0.02em",
+          lineHeight: 1.1,
+          marginBottom: "24px"
+        }}>
+          Architectural-Grade<br />Wellness Infrastructure
+        </h1>
+        <p style={{
+          fontFamily: "'Inter', sans-serif",
+          fontSize: "clamp(1rem, 2vw, 1.25rem)",
+          lineHeight: 1.7,
+          marginBottom: "40px",
+          opacity: 0.9
+        }}>
+          Curated thermal and cold immersion assets for residential sanctuaries and luxury hospitality.
+          White-glove precision delivery and expert installation.
+        </p>
+        <Link
+          href="/products/infrared"
+          style={{
+            display: "inline-block",
+            padding: "18px 48px",
+            background: "#1A1A1A",
+            color: "#ffffff",
+            textDecoration: "none",
+            fontFamily: "'Inter', sans-serif",
+            fontSize: "1rem",
+            fontWeight: 500,
+            borderRadius: "2px",
+            border: "0.5px solid #AF944F",
+            transition: "all 0.25s ease"
+          }}
+        >
+          Explore Collection
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 // Homepage Component
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Lux Haven Infrastructure</title>
-        <meta name="description" content="Architectural-grade wellness infrastructure" />
+        <title>Lux Haven Infrastructure | Architectural-Grade Wellness</title>
+        <meta name="description" content="Premium sauna and cold plunge infrastructure. White-glove delivery and expert installation." />
       </Head>
 
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
         <Header />
-
-        {/* Hero Section */}
-        <section style={{
-          background: "linear-gradient(180deg, #F9F8F4 0%, #E5E4E0 100%)",
-          padding: "120px 20px",
-          textAlign: "center"
-        }}>
-          <h2 style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: "clamp(2rem, 5vw, 3.5rem)",
-            fontWeight: 600,
-            color: "#1A1A1A",
-            marginBottom: "24px",
-            lineHeight: 1.2
-          }}>
-            Architectural-Grade<br />Wellness Infrastructure
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: "clamp(1rem, 2vw, 1.25rem)",
-            color: "#555",
-            maxWidth: "700px",
-            margin: "0 auto 40px",
-            lineHeight: 1.7,
-            letterSpacing: "-0.02em"
-          }}>
-            Curated thermal and cold immersion assets for residential sanctuaries and luxury hospitality.
-            White-glove precision delivery and expert installation.
-          </p>
-          <a
-            href="/products/infrared"
-            style={{
-              display: "inline-block",
-              padding: "16px 40px",
-              background: "#1A1A1A",
-              color: "#ffffff",
-              textDecoration: "none",
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "1rem",
-              fontWeight: 500,
-              borderRadius: "2px",
-              border: "0.5px solid #AF944F",
-              transition: "all 0.25s ease"
-            }}
-          >
-            Explore Collection
-          </a>
-        </section>
+        <Hero />
 
         {/* Products Teaser */}
         <section style={{
@@ -163,21 +199,15 @@ export default function Home() {
                   overflow: "hidden",
                   transition: "box-shadow 0.2s ease"
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
-                }}
               >
-                {/* Image Placeholder */}
+                {/* Real Product Image - Replace with actual product images */}
                 <div style={{
                   height: "320px",
-                  background: "linear-gradient(180deg, #F9F8F4 0%, #E5E4E0 100%)",
+                  background: "#F9F8F4",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  border: "1px solid #AF944F",
+                  position: "relative",
                   margin: "12px",
                   borderRadius: "2px"
                 }}>
@@ -188,7 +218,7 @@ export default function Home() {
                     textAlign: "center",
                     padding: "16px"
                   }}>
-                    Product Photography<br />In Progress
+                    Finnmark Product Photography
                   </span>
                 </div>
                 
