@@ -14,11 +14,13 @@ export default function Home() {
 
       <main>
         {/* Cinematic Hero with Video Parallax */}
+        {/* Note: Add a real video to /public/videos/sauna-steam-loop.mp4 when available */}
         <LuxuryHero
+          videoSrc=""  // Empty = CSS gradient placeholder
           title="Architectural-Grade Wellness Infrastructure"
           subtitle="Curated thermal and cold immersion assets for residential sanctuaries and luxury hospitality. White-glove precision delivery and expert installation."
           ctaText="Explore Collection"
-          ctaLink="/products/saunas"
+          ctaLink="/products/infrared"
           parallaxIntensity={0.1}
         />
 

@@ -33,12 +33,15 @@ export default function OurProducts({ resetCount }) {
 
     const allProducts = [...saunaLifeModels, ...finnmarkModels];
 
-    // Feature 4 products (mix of both lines)
+    // Feature 4 products (Finnmark only for now - has external images)
+    // Skip SaunaLife products (need local images)
+    const [saunaLife1, saunaLife2, ...finnmarkProducts] = allProducts;
+    
     const featured = [
-      allProducts[0], // SaunaLife G11 Panoramic
-      allProducts[1], // SaunaLife G4 Cube
-      allProducts[2], // Finnmark X1
-      allProducts[3], // Finnmark X2
+      finmarkProducts[0], // Finnmark X1
+      finmarkProducts[1], // Finnmark X2
+      finmarkProducts[2], // Finnmark X3
+      finmarkProducts[3], // Finnmark X4
     ];
 
     // Simulate loading for smooth animation
@@ -71,29 +74,48 @@ export default function OurProducts({ resetCount }) {
                   href={product.page}
                   style={{ textDecoration: "none" }}
                 >
-                  {product.images?.hero ? (
-                    <Image
-                      src={product.images.hero}
-                      alt={`${product.name} - Luxury Sauna`}
-                      width={405}
-                      height={475}
-                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8+R8AAvcB+vBGZskAAAAASUVORK5CYII="
-                      placeholder="blur"
-                    />
-                  ) : (
+                  <div style={{
+                    width: "100%",
+                    height: "475px",
+                    background: "linear-gradient(180deg, #F9F8F4 0%, #E5E4E0 100%)",
+                    borderRadius: "4px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                    gap: "12px",
+                    color: "#726e8d",
+                    fontSize: "0.875rem",
+                    position: "relative",
+                    overflow: "hidden"
+                  }}>
+                    {/* Product silhouette placeholder */}
                     <div style={{
-                      width: "100%",
-                      height: "475px",
-                      background: "#F9F8F4",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#726e8d",
-                      fontSize: "0.875rem"
+                      width: "200px",
+                      height: "280px",
+                      border: "2px solid #AF944F",
+                      borderRadius: "4px",
+                      opacity: 0.3
+                    }} />
+                    <span style={{
+                      background: "#ffffff",
+                      padding: "8px 16px",
+                      borderRadius: "2px",
+                      border: "0.5px solid #AF944F",
+                      color: "#1A1A1A",
+                      fontWeight: 500,
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: "0.8125rem"
                     }}>
-                      Image Coming Soon
-                    </div>
-                  )}
+                      Product Photography In Progress
+                    </span>
+                    <span style={{
+                      color: "#a0a0a0",
+                      fontSize: "0.75rem"
+                    }}>
+                      Expected: Q1 2026
+                    </span>
+                  </div>
                   <br />
                   <span style={{
                     fontFamily: "'Inter', sans-serif",
