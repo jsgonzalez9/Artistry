@@ -106,7 +106,7 @@ export default function G11Product() {
     "Construction & Materials": {
       "Exterior Cladding": "Thermally-Modified Nordic Spruce (FSC Certified)",
       "Interior Benches": "Grade-A Canadian Aspen (hypoallergenic)",
-      "Insulation": "22" R-13 thermal mass",
+      "Insulation": "22in R-13 thermal mass",
       "Glass": "Double-paned tempered bronze safety glass",
       "Hardware": "Marine-grade 316 stainless steel"
     },

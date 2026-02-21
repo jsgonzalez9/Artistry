@@ -100,7 +100,7 @@ export default function HyperbaricChambers() {
               and complete cellular restoration.
             </motion.p>
 
-            <!-- Trust Bar -->
+            {/* Trust Bar */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
