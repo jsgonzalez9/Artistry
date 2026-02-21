@@ -18,6 +18,7 @@ const Navbar = () => {
       <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', paddingBottom: '16px', fontFamily: 'Inter, sans-serif', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1rem' }}>
         <Link href="/products/saunas" style={{ color: '#C5C5C5', textDecoration: 'none' }}>Saunas</Link>
         <Link href="/products/infrared" style={{ color: '#C5C5C5', textDecoration: 'none' }}>Infrared</Link>
+        <Link href="/products/hyperbaric-chambers" style={{ color: '#C5A059', textDecoration: 'none' }}>Hyperbarics</Link>
         <Link href="/white-glove" style={{ color: '#C5C5C5', textDecoration: 'none' }}>Service</Link>
         <Link href="/faq" style={{ color: '#C5C5C5', textDecoration: 'none' }}>FAQ</Link>
         <Link href="/about" style={{ color: '#C5C5C5', textDecoration: 'none' }}>About</Link>
