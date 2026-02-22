@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Navbar from "@/pages/components/Navbar";
+import Footer from "@/pages/components/Footer";
 import { saunaProducts } from "@/data/products";
 import QuoteModal from "@/components/QuoteModal";
 
@@ -18,320 +20,333 @@ export default function Saunas() {
   return (
     <>
       <Head>
-        <title>Luxury Barrel Saunas | Lux Haven Infrastructure</title>
-        <meta name="description" content="Architectural-grade Thermo-Spruce barrel saunas by SaunaLife. 25+ year lifespan, white-glove delivery, professional installation coordination." />
+        <title>Thermo-Spruce Barrel Saunas | Lux Haven Infrastructure</title>
+        <meta name="description" content="Architectural-grade SaunaLife barrel saunas. Thermo-Spruce construction, 25+ year lifespan, white-glove installation. Northern European engineering." />
       </Head>
 
-      <div className="sauna-collection" style={{ 
-        maxWidth: '1400px', 
-        margin: '0 auto', 
-        padding: '60px 20px' 
-      }}>
-        {/* Page Header */}
-        <header style={{ 
-          textAlign: 'center', 
-          marginBottom: '80px',
-          paddingBottom: '60px',
-          borderBottom: '0.5px solid var(--lux-gold)'
-        }}>
-          <h1 style={{ fontSize: '3.5rem', marginBottom: '24px' }}>
-            SaunaLife Thermo-Spruce Barrel Saunas
-          </h1>
-          <p style={{ 
-            fontSize: '1.25rem', 
-            color: 'var(--paragraph)', 
-            maxWidth: '800px', 
-            margin: '0 auto',
-            lineHeight: '1.8'
-          }}>
-            Architectural-grade wellness infrastructure engineered for extreme weather resistance 
-            and 25+ year lifespan. Unlike traditional cedar, Thermo-Spruce doesn't rot, warp, or 
-            require constant maintenance.
-          </p>
-        </header>
+      <div style={{ backgroundColor: '#F9F8F4', minHeight: '100vh' }}>
+        <Navbar />
 
-        {/* Product Grid */}
-        <div className="product-grid" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
-          gap: '60px',
-          marginBottom: '80px'
+        {/* Hero Section */}
+        <section style={{
+          position: 'relative',
+          height: '70vh',
+          minHeight: '600px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden'
         }}>
-          {saunaProducts.map((product, index) => (
-            <motion.div
-              key={product.id}
-              className="product-card"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
+          {/* Background with overlay */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, #2C1810 0%, #1A1A1A 50%, #0F0F1A 100%)'
+          }} />
+          
+          {/* Wood grain texture effect */}
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.05,
+            backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(197,160,89,0.1) 2px, rgba(197,160,89,0.1) 4px)'
+          }} />
+
+          <div style={{
+            position: 'relative',
+            zIndex: 2,
+            textAlign: 'center',
+            maxWidth: '900px',
+            padding: '0 20px'
+          }}>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
               style={{
-                background: 'var(--lux-white)',
-                border: '0.5px solid var(--lux-border)',
-                borderRadius: '4px',
-                overflow: 'hidden',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.04)'
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '0.875rem',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: '#C5A059',
+                display: 'block',
+                marginBottom: '16px'
               }}
             >
-              {/* Product Image */}
-              <div style={{
-                height: '400px',
-                background: 'linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)',
+              SaunaLife Garden Series
+            </motion.span>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              style={{
+                fontFamily: 'Playfair Display, serif',
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                color: '#F5F5F5',
+                marginBottom: '24px',
+                lineHeight: 1.1
+              }}
+            >
+              Thermo-Spruce Barrel Architecture
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '1.25rem',
+                color: 'rgba(245,245,245,0.8)',
+                lineHeight: 1.7,
+                marginBottom: '40px'
+              }}
+            >
+              Northern European barrel saunas engineered for extreme weather resistance
+              and 25+ year lifespan. Unlike traditional cedar, Thermo-Spruce doesn't rot,
+              warp, or require constant maintenance.
+            </motion.p>
+
+            {/* Trust Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              style={{
                 display: 'flex',
-                alignItems: 'center',
                 justifyContent: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-                <Image
-                  src={product.image_url}
-                  alt={product.name}
-                  fill
-                  style={{
-                    objectFit: 'cover',
-                    objectPosition: 'center'
-                  }}
-                />
-                {product.blueprint_url && (
-                  <span style={{
-                    position: 'absolute',
-                    bottom: '20px',
-                    right: '20px',
-                    fontSize: '0.75rem',
-                    color: 'var(--lux-gold)',
-                    background: 'rgba(255,255,255,0.9)',
-                    padding: '8px 12px',
-                    borderRadius: '2px'
+                gap: '40px',
+                flexWrap: 'wrap'
+              }}
+            >
+              {[
+                { icon: '25+', label: 'Year Lifespan' },
+                { icon: '0%', label: 'Maintenance Required' },
+                { icon: '✓', label: 'FSC Certified Wood' }
+              ].map((item, idx) => (
+                <div key={idx} style={{ textAlign: 'center' }}>
+                  <div style={{ 
+                    fontSize: '1.5rem', 
+                    color: '#C5A059',
+                    marginBottom: '8px'
                   }}>
-                    📐 Blueprint Available
-                  </span>
-                )}
-              </div>
-
-              {/* Product Details */}
-              <div style={{ padding: '40px' }}>
-                <h2 style={{ fontSize: '1.75rem', marginBottom: '12px' }}>
-                  {product.name}
-                </h2>
-                
-                <p style={{ 
-                  fontSize: '1.0625rem', 
-                  color: 'var(--paragraph)',
-                  marginBottom: '24px'
-                }}>
-                  {product.short_description}
-                </p>
-
-                <div style={{ 
-                  fontSize: '2rem', 
-                  fontWeight: '600',
-                  marginBottom: '32px',
-                  fontFamily: 'Playfair Display, serif'
-                }}>
-                  {product.price_formatted}
-                </div>
-
-                {/* Key Specs */}
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '20px',
-                  marginBottom: '32px',
-                  padding: '24px',
-                  background: 'var(--lux-bg)',
-                  borderRadius: '4px'
-                }}>
-                  <div>
-                    <div style={{ fontSize: '0.8125rem', color: 'var(--lux-gray)', marginBottom: '4px' }}>Capacity</div>
-                    <div style={{ fontSize: '1rem', fontWeight: '500' }}>{product.capacity}</div>
+                    {item.icon}
                   </div>
-                  <div>
-                    <div style={{ fontSize: '0.8125rem', color: 'var(--lux-gray)', marginBottom: '4px' }}>Weight</div>
-                    <div style={{ fontSize: '1rem', fontWeight: '500' }}>{product.weight_lbs.toLocaleString()} lbs</div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.8125rem', color: 'var(--lux-gray)', marginBottom: '4px' }}>Dimensions</div>
-                    <div style={{ fontSize: '1rem', fontWeight: '500' }}>{product.dimensions}</div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.8125rem', color: 'var(--lux-gray)', marginBottom: '4px' }}>Electrical</div>
-                    <div style={{ fontSize: '1rem', fontWeight: '500' }}>{product.electrical}</div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.8125rem', color: 'var(--lux-gray)', marginBottom: '4px' }}>Lead Time</div>
-                    <div style={{ fontSize: '1rem', fontWeight: '500' }}>{product.lead_time}</div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.8125rem', color: 'var(--lux-gray)', marginBottom: '4px' }}>Warranty</div>
-                    <div style={{ fontSize: '1rem', fontWeight: '500' }}>{product.warranty}</div>
-                  </div>
-                </div>
-
-                {/* Installation Requirements Callout */}
-                <div style={{
-                  padding: '20px',
-                  border: '0.5px solid var(--lux-gold)',
-                  borderRadius: '4px',
-                  marginBottom: '32px',
-                  background: 'rgba(175, 148, 79, 0.03)'
-                }}>
-                  <div style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '12px', color: 'var(--lux-gold)' }}>
-                    📐 Installation Requirements
-                  </div>
-                  <ul style={{ 
-                    fontSize: '0.875rem', 
-                    lineHeight: '1.8', 
-                    paddingLeft: '20px',
-                    margin: 0,
-                    color: 'var(--paragraph)'
+                  <div style={{ 
+                    fontSize: '0.75rem', 
+                    color: 'rgba(245,245,245,0.7)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em'
                   }}>
-                    <li><strong>Pad:</strong> {product.installation_requirements.pad_size}</li>
-                    <li><strong>Clearance:</strong> {product.installation_requirements.clearance_height}</li>
-                    <li><strong>Access:</strong> {product.installation_requirements.access_width}</li>
-                  </ul>
-                </div>
-
-                {/* Features List */}
-                <div style={{ marginBottom: '32px' }}>
-                  <div style={{ fontSize: '0.875rem', fontWeight: '600', marginBottom: '12px' }}>
-                    Key Features
+                    {item.label}
                   </div>
-                  <ul style={{ 
-                    fontSize: '0.9375rem', 
-                    lineHeight: '1.8', 
-                    paddingLeft: '20px',
-                    margin: 0,
-                    color: 'var(--paragraph)'
-                  }}>
-                    {product.features.map((feature, idx) => (
-                      <li key={idx}>{feature}</li>
-                    ))}
-                  </ul>
                 </div>
-
-                {/* CTA Button */}
-                <button
-                  onClick={() => handleRequestQuote(product)}
-                  style={{
-                    width: '100%',
-                    padding: '18px 32px',
-                    fontSize: '1rem',
-                    fontWeight: '500',
-                    background: 'var(--lux-text)',
-                    color: 'var(--lux-white)',
-                    border: 'none',
-                    borderRadius: '2px',
-                    cursor: 'pointer',
-                    transition: 'all 0.25s ease'
-                  }}
-                >
-                  Request a Quote
-                </button>
-
-                <div style={{
-                  marginTop: '16px',
-                  fontSize: '0.8125rem',
-                  color: 'var(--lux-gray)',
-                  textAlign: 'center'
-                }}>
-                  ✦ White-glove delivery & installation coordination included
-                </div>
-              </div>
+              ))}
             </motion.div>
-          ))}
-        </div>
-
-        {/* Why Thermo-Spruce Section */}
-        <section style={{
-          padding: '80px 40px',
-          background: 'var(--lux-white)',
-          border: '0.5px solid var(--lux-gold)',
-          borderRadius: '4px',
-          marginBottom: '80px'
-        }}>
-          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '32px', textAlign: 'center' }}>
-              Why Thermo-Spruce?
-            </h2>
-            <p style={{ fontSize: '1.125rem', lineHeight: '1.8', marginBottom: '24px' }}>
-              Thermo-treated wood isn't a coating or sealant—it's a fundamental transformation of the wood itself. 
-              Heated to 212°C in an oxygen-free environment, the wood's cellular structure permanently changes, 
-              becoming denser, more stable, and naturally resistant to decay.
-            </p>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '40px',
-              marginTop: '40px'
-            }}>
-              <div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '16px' }}>Traditional Cedar</h3>
-                <ul style={{ fontSize: '1rem', lineHeight: '2', paddingLeft: '20px' }}>
-                  <li>5-10 year lifespan</li>
-                  <li>Annual sealing required</li>
-                  <li>Prone to warping & rot</li>
-                  <li>15-20% moisture absorption</li>
-                </ul>
-              </div>
-              <div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '16px' }}>Thermo-Spruce</h3>
-                <ul style={{ fontSize: '1rem', lineHeight: '2', paddingLeft: '20px' }}>
-                  <li>25+ year lifespan</li>
-                  <li>Virtually maintenance-free</li>
-                  <li>Exceptional weather resistance</li>
-                  <li>Below 4% moisture absorption</li>
-                </ul>
-              </div>
-            </div>
-            <div style={{ textAlign: 'center', marginTop: '40px' }}>
-              <Link href="/content/why-thermal-wood" style={{
-                color: 'var(--lux-gold)',
-                fontSize: '1rem',
-                fontWeight: '500',
-                textDecoration: 'underline'
-              }}>
-                Read the full science behind thermal wood →
-              </Link>
-            </div>
           </div>
         </section>
 
-        {/* Consultation CTA */}
-        <section style={{
-          textAlign: 'center',
-          padding: '80px 40px',
-          background: 'var(--lux-bg)',
-          borderRadius: '4px'
-        }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>
-            Not Sure Which Model Is Right for Your Space?
-          </h2>
-          <p style={{ 
-            fontSize: '1.125rem', 
-            color: 'var(--paragraph)',
-            maxWidth: '600px',
-            margin: '0 auto 32px'
+        {/* Main Content */}
+        <main style={{ padding: '100px 20px', maxWidth: '1400px', margin: '0 auto' }}>
+          {/* Product Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
+            gap: '60px',
+            marginBottom: '80px'
           }}>
-            Our wellness specialists provide consultative guidance to help you select the right size, 
-            features, and placement for your property.
-          </p>
-          <Link href="/contact">
-            <button style={{
-              padding: '18px 48px',
-              fontSize: '1rem',
-              fontWeight: '500'
-            }}>
-              Schedule a Consultation
-            </button>
-          </Link>
-        </section>
+            {saunaProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                style={{
+                  background: 'white',
+                  borderRadius: '4px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 30px rgba(0,0,0,0.08)',
+                  border: '1px solid #E5E4E0'
+                }}
+              >
+                {/* Product Image */}
+                <div style={{
+                  height: '400px',
+                  position: 'relative',
+                  background: 'linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%)',
+                  overflow: 'hidden'
+                }}>
+                  <Image
+                    src={product.image_url}
+                    alt={product.name}
+                    fill
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center'
+                    }}
+                  />
+                  {product.blueprint_url && (
+                    <span style={{
+                      position: 'absolute',
+                      bottom: '20px',
+                      right: '20px',
+                      fontSize: '0.75rem',
+                      color: '#F5F5F5',
+                      background: '#C5A059',
+                      padding: '6px 12px',
+                      borderRadius: '2px'
+                    }}>
+                      📐 Blueprint Available
+                    </span>
+                  )}
+                </div>
+
+                {/* Product Details */}
+                <div style={{ padding: '40px' }}>
+                  <span style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '0.75rem',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase',
+                    color: '#C5A059'
+                  }}>
+                    {product.series}
+                  </span>
+                  
+                  <h2 style={{
+                    fontFamily: 'Playfair Display, serif',
+                    fontSize: '2rem',
+                    color: '#1A1A1A',
+                    marginTop: '8px',
+                    marginBottom: '16px'
+                  }}>
+                    {product.name}
+                  </h2>
+                  
+                  <p style={{
+                    fontSize: '1rem',
+                    color: '#555555',
+                    lineHeight: 1.7,
+                    marginBottom: '24px'
+                  }}>
+                    {product.short_description}
+                  </p>
+
+                  <div style={{ 
+                    fontSize: '1.75rem',
+                    fontFamily: 'Playfair Display, serif',
+                    marginBottom: '24px',
+                    color: '#1A1A1A'
+                  }}>
+                    {product.price_formatted}
+                  </div>
+
+                  {/* Key Specs */}
+                  <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '16px',
+                    marginBottom: '24px',
+                    padding: '20px',
+                    backgroundColor: '#F9F8F4',
+                    borderRadius: '4px'
+                  }}>
+                    <div>
+                      <div style={{ fontSize: '0.75rem', color: '#726E8D', marginBottom: '4px' }}>Capacity</div>
+                      <div style={{ fontSize: '0.9375rem', fontWeight: 500 }}>{product.capacity} Bathers</div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '0.75rem', color: '#726E8D', marginBottom: '4px' }}>Weight</div>
+                      <div style={{ fontSize: '0.9375rem', fontWeight: 500 }}>{product.weight_lbs.toLocaleString()} lbs</div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '0.75rem', color: '#726E8D', marginBottom: '4px' }}>Wood</div>
+                      <div style={{ fontSize: '0.9375rem', fontWeight: 500 }}>{product.materials}</div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '0.75rem', color: '#726E8D', marginBottom: '4px' }}>Warranty</div>
+                      <div style={{ fontSize: '0.9375rem', fontWeight: 500 }}>{product.warranty}</div>
+                    </div>
+                  </div>
+
+                  {/* Features */}
+                  <div style={{ marginBottom: '24px' }}>
+                    <div style={{ fontSize: '0.8125rem', fontWeight: 600, marginBottom: '8px' }}>
+                      Key Specifications
+                    </div>
+                    <ul style={{ 
+                      fontSize: '0.875rem', 
+                      lineHeight: '1.6', 
+                      paddingLeft: '18px',
+                      margin: 0,
+                      color: '#555555'
+                    }}>
+                      {product.features.slice(0, 4).map((feature, idx) => (
+                        <li key={idx}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* CTAs */}
+                  <div style={{ display: 'flex', gap: '12px', flexDirection: 'column' }}>
+                    <Link
+                      href={`/products/${product.id}`}
+                      style={{
+                        padding: '16px 24px',
+                        backgroundColor: '#1A1A1A',
+                        color: '#F5F5F5',
+                        fontSize: '0.9375rem',
+                        fontWeight: 500,
+                        textAlign: 'center',
+                        textDecoration: 'none',
+                        borderRadius: '4px',
+                        transition: 'all 0.25s ease'
+                      }}
+                    >
+                      View Details →
+                    </Link>
+                    
+                    <button
+                      onClick={() => handleRequestQuote(product)}
+                      style={{
+                        padding: '14px 24px',
+                        backgroundColor: 'transparent',
+                        color: '#1A1A1A',
+                        border: '1px solid #1A1A1A',
+                        fontSize: '0.9375rem',
+                        fontWeight: 500,
+                        cursor: 'pointer',
+                        borderRadius: '4px',
+                        transition: 'all 0.25s ease'
+                      }}
+                    >
+                      Request a Quote
+                    </button>
+                  </div>
+
+                  <div style={{
+                    marginTop: '16px',
+                    fontSize: '0.75rem',
+                    color: '#726E8D',
+                    textAlign: 'center'
+                  }}>
+                    ✦ White-glove delivery & installation included
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </main>
+
+        <Footer />
       </div>
 
-      {/* Quote Modal */}
-      <QuoteModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        productName={selectedProduct?.name || "SaunaLife Thermo-Spruce Barrel Sauna"}
+      <QuoteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        product={selectedProduct?.name} 
       />
     </>
   );
