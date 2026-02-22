@@ -195,7 +195,7 @@ export default function InfraredSaunas() {
                     padding: '6px 12px',
                     borderRadius: '2px'
                   }}>
-                    🛡️ EMF < 3 mG
+                    🛡️ EMF &lt; 3 mG
                   </div>
                 </div>
 
