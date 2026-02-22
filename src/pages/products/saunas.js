@@ -292,7 +292,7 @@ export default function Saunas() {
                   {/* CTAs */}
                   <div style={{ display: 'flex', gap: '12px', flexDirection: 'column' }}>
                     <Link
-                      href={`/products/${product.id}`}
+                      href={`/products/${product.id.replace('saunalife-', '')}`}
                       style={{
                         padding: '16px 24px',
                         backgroundColor: '#1A1A1A',
