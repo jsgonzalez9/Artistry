@@ -103,7 +103,7 @@ export default function InfraredSaunas() {
                 marginBottom: '40px'
               }}
             >
-              Medical-grade infrared therapy with ultra-low EMF emissions (<3 mG).
+              Medical-grade infrared therapy with ultra-low EMF emissions (less than 3 mG).
               Carbon fiber heating panels deliver consistent, therapeutic heat at lower
               operating temperatures than traditional saunas—gentler on the body, deeper penetration.
             </motion.p>
