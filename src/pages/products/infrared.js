@@ -121,7 +121,7 @@ export default function InfraredSaunas() {
               }}
             >
               {[
-                { icon: '🛡️', label: 'Ultra-Low EMF <3 mG' },
+                { icon: '🛡️', label: 'Ultra-Low EMF < 3 mG' },
                 { icon: '∞', label: 'Lifetime Warranty' },
                 { icon: '✓', label: 'FDA Class II Medical' }
               ].map((item, idx) => (
@@ -195,7 +195,7 @@ export default function InfraredSaunas() {
                     padding: '6px 12px',
                     borderRadius: '2px'
                   }}>
-                    🛡️ EMF <3 mG
+                    🛡️ EMF < 3 mG
                   </div>
                 </div>
 
