@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Dashboard - Lux Haven Operations</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #1a1a1a;
+      --border: #2a2a2a;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --text-muted: #666666;
+      --accent-gold: #c9a96e;
+      --accent-gold-dim: rgba(201, 169, 110, 0.2);
+      --green: #10b981;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --blue: #3b82f6;
+      --purple: #8b5cf6;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+    .app { display: flex; min-height: 100vh; }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .logo-sub {
+      font-size: 11px;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .nav-section {
+      padding: 24px 16px;
+      flex: 1;
+    }
+    .nav-section-title {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      padding-left: 12px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .nav-item:hover { background: var(--bg-card); color: var(--text-primary); }
+    .nav-item.active { background: var(--accent-gold-dim); color: var(--accent-gold); }
+    .nav-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+    .nav-badge {
+      margin-left: auto;
+      background: var(--red);
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+    .nav-badge.warning { background: var(--yellow); color: black; }
+    .nav-badge.success { background: var(--green); }
+    
+    /* Main Content */
+    .main {
+      margin-left: 280px;
+      flex: 1;
+      padding: 32px;
+      max-width: calc(100vw - 280px);
+    }
+    
+    /* Status Bar */
+    .status-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .status-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .status-card.blockers { border-left: 3px solid var(--red); }
+    .status-card.progress { border-left: 3px solid var(--yellow); }
+    .status-card.complete { border-left: 3px solid var(--green); }
+    .status-card.backlog { border-left: 3px solid var(--text-muted); }
+    .status-count {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .status-card.blockers .status-count { color: var(--red); }
+    .status-card.progress .status-count { color: var(--yellow); }
+    .status-card.complete .status-count { color: var(--green); }
+    .status-card.backlog .status-count { color: var(--text-muted); }
+    .status-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13px;
+    }
+    .filter-btn:hover { border-color: var(--accent-gold); color: var(--text-primary); }
+    .filter-btn.active { background: var(--accent-gold); color: var(--bg-primary); border-color: var(--accent-gold); }
+    
+    /* Task Board */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .board-column {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 400px;
+    }
+    .column-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .column-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .column-count {
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .task-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 12px;
+      cursor: grab;
+      transition: all 0.2s;
+    }
+    .task-card:hover { border-color: var(--accent-gold); transform: translateY(-2px); }
+    .task-priority {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .priority-p0 { background: var(--red); color: white; }
+    .priority-p1 { background: var(--yellow); color: black; }
+    .priority-p2 { background: var(--blue); color: white; }
+    .priority-p3 { background: var(--text-muted); color: white; }
+    .task-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .task-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .task-assignee {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .assignee-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--bg-primary);
+    }
+    .task-tags {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .task-tag {
+      font-size: 10px;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    
+    /* Page Sections */
+    .page-header {
+      margin-bottom: 32px;
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .team-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .team-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .team-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--bg-primary);
+    }
+    .team-name {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .team-role {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .team-status {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .team-priorities {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .priority-item {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .priority-item:before {
+      content: "→";
+      color: var(--accent-gold);
+    }
+    
+    /* Gap Analysis */
+    .gap-list {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .gap-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr auto;
+      gap: 16px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .gap-item:last-child { border-bottom: none; }
+    .gap-impact {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .impact-critical { background: var(--red); color: white; }
+    .impact-high { background: var(--yellow); color: black; }
+    .impact-medium { background: var(--blue); color: white; }
+    .gap-title { font-weight: 500; }
+    .gap-solution { font-size: 13px; color: var(--text-secondary); }
+    .gap-owner { font-size: 12px; color: var(--text-muted); }
+    
+    /* Timeline/Sprint */
+    .sprint-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .sprint-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .sprint-date {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .sprint-list {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .sprint-item {
+      display: grid;
+      grid-template-columns: 40px 1fr 100px auto;
+      gap: 16px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .sprint-item:last-child { border-bottom: none; }
+    .sprint-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sprint-checkbox:hover { border-color: var(--accent-gold); }
+    .sprint-checkbox.checked { background: var(--green); border-color: var(--green); }
+    .sprint-checkbox.checked:after {
+      content: "✓";
+      color: white;
+      font-size: 12px;
+    }
+    .sprint-task { font-weight: 500; }
+    .sprint-task.completed { text-decoration: line-through; color: var(--text-muted); }
+    .sprint-priority { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .sprint-priority.p0 { color: var(--red); }
+    .sprint-priority.p1 { color: var(--yellow); }
+    .sprint-priority.p2 { color: var(--blue); }
+    
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .metric-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .metric-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 4px;
+    }
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    /* Section */
+    .section { margin-bottom: 40px; }
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title:after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    
+    /* Tab Content */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    
+    /* Add Button */
+    .add-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      color: var(--bg-primary);
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+      transition: all 0.2s;
+    }
+    .add-btn:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(201, 169, 110, 0.4); }
+    
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .board { grid-template-columns: repeat(2, 1fr); }
+      .gap-item { grid-template-columns: 1fr 1fr; }
+      .gap-solution, .gap-owner { grid-column: 1 / -1; margin-top: 8px; }
+    }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; max-width: 100vw; padding: 20px; }
+      .status-bar { grid-template-columns: repeat(2, 1fr); }
+      .board { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">Lux Haven</div>
+        <div class="logo-sub">Operations Dashboard</div>
+      </div>
+      
+      <div class="nav-section">
+        <div class="nav-section-title">Overview</div>
+        <div class="nav-item active" onclick="showTab('dashboard')">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </div>
+        <div class="nav-item" onclick="showTab('board')">
+          <span class="nav-icon">📋</span>
+          <span>Task Board</span>
+          <span class="nav-badge warning">12</span>
+        </div>
+        <div class="nav-item" onclick="showTab('team')">
+          <span class="nav-icon">👥</span>
+          <span>Team</span>
+        </div>
+        <div class="nav-item" onclick="showTab('gaps')">
+          <span class="nav-icon">⚠️</span>
+          <span>Gap Analysis</span>
+          <span class="nav-badge">6</span>
+        </div>
+        
+        <div class="nav-section-title" style="margin-top: 24px;">Planning</div>
+        <div class="nav-item" onclick="showTab('sprint')">
+          <span class="nav-icon">🎯</span>
+          <span>This Week</span>
+        </div>
+        <div class="nav-item" onclick="showTab('metrics')">
+          <span class="nav-icon">📈</span>
+          <span>Metrics</span>
+        </div>
+        <div class="nav-item" onclick="showTab('timeline')">
+          <span class="nav-icon">📅</span>
+          <span>Timeline</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main">
+      <!-- DASHBOARD TAB -->
+      <div id="dashboard" class="tab-content active">
+        <div class="page-header">
+          <h1 class="page-title">Operations Dashboard</h1>
+          <p class="page-subtitle">Track what everyone is working on, identify gaps, and manage priorities</p>
+        </div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar">
+          <div class="status-card blockers">
+            <div class="status-count">3</div>
+            <div class="status-label">🔴 Critical Blockers</div>
+          </div>
+          <div class="status-card progress">
+            <div class="status-count">8</div>
+            <div class="status-label">🟡 In Progress</div>
+          </div>
+          <div class="status-card complete">
+            <div class="status-count">5</div>
+            <div class="status-label">🟢 Complete</div>
+          </div>
+          <div class="status-card backlog">
+            <div class="status-count">12</div>
+            <div class="status-label">⚪ Not Started</div>
+          </div>
+        </div>
+        
+        <!-- Critical Blockers - Priority -->
+        <div class="section">
+          <h2 class="section-title">🚨 Critical Blockers (Requires Immediate Action)</h2>
+          <div class="sprint-list">
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Deploy /service page to Vercel production</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Hector (You)</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Add Crisp chatbot ID and enable</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Hector (You)</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Create Google Ads account</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Hector (You)</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- In Progress -->
+        <div class="section">
+          <h2 class="section-title">📍 Currently In Progress</h2>
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="team-header">
+                <div class="team-avatar">H</div>
+                <div>
+                  <div class="team-name">Hector</div>
+                  <div class="team-role">Founder / Sales</div>
+                </div>
+              </div>
+              <div class="team-status">Working on: Business strategy, TikTok planning</div>
+              <div class="team-priorities">
+                <div class="priority-item">Deploy service page</div>
+                <div class="priority-item">Shoot first product video</div>
+                <div class="priority-item">Create Google Ads account</div>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-header">
+                <div class="team-avatar" style="background: var(--purple);">L</div>
+                <div>
+                  <div class="team-name">Larry (AI)</div>
+                  <div class="team-role">Technical / Content</div>
+                </div>
+              </div>
+              <div class="team-status">Working on: Documentation, frameworks, analysis</div>
+              <div class="team-priorities">
+                <div class="priority-item">Dashboard maintenance</div>
+                <div class="priority-item">Content calendar</div>
+                <div class="priority-item">Performance tracking</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="section">
+          <h2 class="section-title">📊 Launch Readiness</h2>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-value">65%</div>
+              <div class="metric-label">Website Ready</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">40%</div>
+              <div class="metric-label">Content Ready</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">20%</div>
+              <div class="metric-label">Ads Ready</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">0%</div>
+              <div class="metric-label">Sales Process</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">$0</div>
+              <div class="metric-label">Revenue MTD</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">0</div>
+              <div class="metric-label">Leads</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- TASK BOARD TAB -->
+      <div id="board" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">Task Board</h1>
+          <p class="page-subtitle">Drag tasks between columns to update status</p>
+        </div>
+        
+        <div class="filters">
+          <button class="filter-btn active" onclick="filterTasks('all')">All Tasks</button>
+          <button class="filter-btn" onclick="filterTasks('website')">Website</button>
+          <button class="filter-btn" onclick="filterTasks('marketing')">Marketing</button>
+          <button class="filter-btn" onclick="filterTasks('content')">Content</button>
+          <button class="filter-btn" onclick="filterTasks('sales')">Sales</button>
+        </div>
+        
+        <div class="board">
+          <!-- Blockers Column -->
+          <div class="board-column">
+            <div class="column-header">
+              <span class="column-title" style="color: var(--red);">🔴 Blockers</span>
+              <span class="column-count">3</span>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p0">P0 - Critical</span>
+              <div class="task-title">Deploy /service page to Vercel</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>ASAP</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">deployment</span>
+                <span class="task-tag">P0</span>
+              </div>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p0">P0 - Critical</span>
+              <div class="task-title">Add Crisp chatbot ID</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>Week 1</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">conversion</span>
+              </div>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p0">P0 - Critical</span>
+              <div class="task-title">Create Google Ads account</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>ASAP</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">ads</span>
+                <span class="task-tag">marketing</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- In Progress Column -->
+          <div class="board-column">
+            <div class="column-header">
+              <span class="column-title" style="color: var(--yellow);">🟡 In Progress</span>
+              <span class="column-count">8</span>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p0">P0</span>
+              <div class="task-title">Shoot first product video (G11)</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>Week 1</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">video</span>
+                <span class="task-tag">content</span>
+              </div>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p1">P1</span>
+              <div class="task-title">Install conversion tracking</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>Week 1</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">analytics</span>
+              </div>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p2">P2</span>
+              <div class="task-title">TikTok content calendar</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar" style="background: var(--purple);">L</span>
+                  Larry
+                </span>
+                <span>Week 2</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">tiktok</span>
+                <span class="task-tag">content</span>
+              </div>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p1">P1</span>
+              <div class="task-title">Collect 3 customer testimonials</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>Week 2</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">social-proof</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Complete Column -->
+          <div class="board-column">
+            <div class="column-header">
+              <span class="column-title" style="color: var(--green);">🟢 Complete</span>
+              <span class="column-count">5</span>
+            </div>
+            <div class="task-card" style="opacity: 0.6;">
+              <span class="task-priority priority-p0">P0</span>
+              <div class="task-title">Redesign /service page</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar" style="background: var(--purple);">L</span>
+                  Larry
+                </span>
+                <span>✓ Done</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">design</span>
+                <span class="task-tag">website</span>
+              </div>
+            </div>
+            <div class="task-card" style="opacity: 0.6;">
+              <span class="task-priority priority-p1">P1</span>
+              <div class="task-title">Marketing framework</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar" style="background: var(--purple);">L</span>
+                  Larry
+                </span>
+                <span>✓ Done</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">strategy</span>
+              </div>
+            </div>
+            <div class="task-card" style="opacity: 0.6;">
+              <span class="task-priority priority-p1">P1</span>
+              <div class="task-title">Google Ads launch checklist</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar" style="background: var(--purple);">L</span>
+                  Larry
+                </span>
+                <span>✓ Done</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">ads</span>
+                <span class="task-tag">marketing</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Not Started Column -->
+          <div class="board-column">
+            <div class="column-header">
+              <span class="column-title" style="color: var(--text-muted);">⚪ Backlog</span>
+              <span class="column-count">12</span>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p1">P1</span>
+              <div class="task-title">Launch Brand Protection campaign</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>Week 2</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">ads</span>
+                <span class="task-tag">google</span>
+              </div>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p2">P2</span>
+              <div class="task-title">Set up HubSpot CRM</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>Week 3</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">crm</span>
+                <span class="task-tag">sales</span>
+              </div>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p2">P2</span>
+              <div class="task-title">Create proposal template</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>Week 3</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">sales</span>
+              </div>
+            </div>
+            <div class="task-card">
+              <span class="task-priority priority-p3">P3</span>
+              <div class="task-title">Create TikTok account</div>
+              <div class="task-meta">
+                <span class="task-assignee">
+                  <span class="assignee-avatar">H</span>
+                  Hector
+                </span>
+                <span>Month 1</span>
+              </div>
+              <div class="task-tags">
+                <span class="task-tag">tiktok</span>
+                <span class="task-tag">social</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- TEAM TAB -->
+      <div id="team" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">Team Status</h1>
+          <p class="page-subtitle">What everyone is working on and what's blocking them</p>
+        </div>
+        
+        <div class="team-grid">
+          <div class="team-card" style="border: 1px solid var(--accent-gold);">
+            <div class="team-header">
+              <div class="team-avatar" style="width: 50px; height: 50px; font-size: 20px;">H</div>
+              <div>
+                <div class="team-name">Hector</div>
+                <div class="team-role">Founder / Sales / Operations</div>
+              </div>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">CURRENTLY WORKING ON</div>
+              <div style="font-size: 14px; color: var(--text-primary);">Business strategy, TikTok planning, deployment</div>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">BLOCKED BY</div>
+              <div style="font-size: 14px; color: var(--red);">Vercel deployment, video shoot, Google Ads setup</div>
+            </div>
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">NEXT 3 PRIORITIES</div>
+              <div class="team-priorities">
+                <div class="priority-item">Deploy /service page to production</div>
+                <div class="priority-item">Shoot first product video (2 hours)</div>
+                <div class="priority-item">Create Google Ads account</div>
+              </div>
+            </div>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+              <div style="display: flex; gap: 8px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Workload:</span>
+                <span style="font-size: 12px; color: var(--yellow);">High</span>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Active Tasks:</span>
+                <span style="font-size: 12px; color: var(--text-primary);">8 tasks</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="team-card">
+            <div class="team-header">
+              <div class="team-avatar" style="background: var(--purple); width: 50px; height: 50px; font-size: 20px;">L</div>
+              <div>
+                <div class="team-name">Larry (AI Agent)</div>
+                <div class="team-role">Technical Development / Content / Analysis</div>
+              </div>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">CURRENTLY WORKING ON</div>
+              <div style="font-size: 14px; color: var(--text-primary);">Documentation, frameworks, dashboard maintenance</div>
+            </div>
+            <div style="margin-bottom: 16px;">
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">BLOCKED BY</div>
+              <div style="font-size: 14px; color: var(--text-secondary);">User feedback/input on priorities</div>
+            </div>
+            <div>
+              <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">NEXT 3 PRIORITIES</div>
+              <div class="team-priorities">
+                <div class="priority-item">Dashboard maintenance & updates</div>
+                <div class="priority-item">Content calendar creation</div>
+                <div class="priority-item">Performance tracking metrics</div>
+              </div>
+            </div>
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+              <div style="display: flex; gap: 8px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Status:</span>
+                <span style="font-size: 12px; color: var(--green);">Active</span>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 4px;">
+                <span style="font-size: 12px; color: var(--text-muted);">Tasks Completed:</span>
+                <span style="font-size: 12px; color: var(--text-primary);">15+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- GAPS TAB -->
+      <div id="gaps" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">Gap Analysis</h1>
+          <p class="page-subtitle">Critical gaps preventing launch and growth</p>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">Critical Gaps (Blocking Launch)</h2>
+          <div class="gap-list">
+            <div class="gap-item">
+              <div class="gap-title">No live deployment</div>
+              <span class="gap-impact impact-critical">Critical</span>
+              <div class="gap-solution">Run npx vercel --prod to deploy /service page and all updates</div>
+              <div class="gap-owner">Hector</div>
+            </div>
+            <div class="gap-item">
+              <div class="gap-title">No video content</div>
+              <span class="gap-impact impact-critical">Critical</span>
+              <div class="gap-solution">Shoot G11 product demo video within 7 days (2 hours)</div>
+              <div class="gap-owner">Hector</div>
+            </div>
+            <div class="gap-item">
+              <div class="gap-title">No chatbot active</div>
+              <span class="gap-impact impact-critical">Critical</span>
+              <div class="gap-solution">Get Crisp ID and add to _app.js, then redeploy</div>
+              <div class="gap-owner">Hector</div>
+            </div>
+            <div class="gap-item">
+              <div class="gap-title">No customer testimonials</div>
+              <span class="gap-impact impact-high">High</span>
+              <div class="gap-solution">Contact first 5 customers, offer $500 gift cards for testimonials</div>
+              <div class="gap-owner">Hector</div>
+            </div>
+            <div class="gap-item">
+              <div class="gap-title">No ads running</div>
+              <span class="gap-impact impact-high">High</span>
+              <div class="gap-solution">Create Google Ads account with cliffgone@gmail.com</div>
+              <div class="gap-owner">Hector</div>
+            </div>
+            <div class="gap-item">
+              <div class="gap-title">No CRM system</div>
+              <span class="gap-impact impact-medium">Medium</span>
+              <div class="gap-solution">Set up HubSpot free CRM to track leads and follow-ups</div>
+              <div class="gap-owner">Hector</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">Resource Gaps</h2>
+          <div class="gap-list">
+            <div class="gap-item">
+              <div class="gap-title">Technical Development</div>
+              <span class="gap-impact impact-medium">Medium</span>
+              <div class="gap-solution">✅ Covered - AI agent (Larry) handling dev work</div>
+              <div class="gap-owner">Covered</div>
+            </div>
+            <div class="gap-item">
+              <div class="gap-title">Video Production</div>
+              <span class="gap-impact impact-high">High</span>
+              <div class="gap-solution">Phone + $50 mic, 2 hours to shoot first video</div>
+              <div class="gap-owner">Hector</div>
+            </div>
+            <div class="gap-item">
+              <div class="gap-title">Ad Management</div>
+              <span class="gap-impact impact-high">High</span>
+              <div class="gap-solution">Start small ($3k/mo), learn as you go, scale what works</div>
+              <div class="gap-owner">Hector</div>
+            </div>
+            <div class="gap-item">
+              <div class="gap-title">Sales Closer</div>
+              <span class="gap-impact impact-medium">Medium</span>
+              <div class="gap-solution">✅ Covered - You handle consults, need documented SOP</div>
+              <div class="gap-owner">You</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- SPRINT TAB -->
+      <div id="sprint" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">This Week's Sprint</h1>
+          <p class="page-subtitle">Week of Feb 22-28, 2026</p>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">MUST DO (P0 - Launch Blockers)</h2>
+          <div class="sprint-list">
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Deploy /service page to Vercel production</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--red);">Critical</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Add Crisp chatbot ID and verify working</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--red);">Critical</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Create Google Ads account (Expert Mode)</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--red);">Critical</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Shoot first product video (G11 demo)</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--red);">Critical</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">SHOULD DO (P1 - Important)</h2>
+          <div class="sprint-list">
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Collect 3 customer testimonials ($500 gift cards)</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--yellow);">High</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Launch Brand Protection campaign ($500/mo)</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--yellow);">High</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Set up HubSpot free CRM</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--yellow);">High</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">COULD DO (P2 - If Time)</h2>
+          <div class="sprint-list">
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Create TikTok account</div>
+              <div class="sprint-priority p2">P2</div>
+              <div style="font-size: 12px; color: var(--blue);">Medium</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Write first SEO article</div>
+              <div class="sprint-priority p2">P2</div>
+              <div style="font-size: 12px; color: var(--blue);">Medium</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox" onclick="this.classList.toggle('checked')"></div>
+              <div class="sprint-task">Design proposal template</div>
+              <div class="sprint-priority p2">P2</div>
+              <div style="font-size: 12px; color: var(--blue);">Medium</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- METRICS TAB -->
+      <div id="metrics" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">Launch Metrics</h1>
+          <p class="page-subtitle">Track readiness and progress toward first sale</p>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">Website Readiness</h2>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-value">65%</div>
+              <div class="metric-label">Overall Complete</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">✅</div>
+              <div class="metric-label">Service Page</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">🟡</div>
+              <div class="metric-label">Chatbot</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">❌</div>
+              <div class="metric-label">Video Content</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">❌</div>
+              <div class="metric-label">Testimonials</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">❌</div>
+              <div class="metric-label">Analytics</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">Business Metrics</h2>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-value">0</div>
+              <div class="metric-label">Website Visitors (This Week)</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">0</div>
+              <div class="metric-label">Leads Generated</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">0</div>
+              <div class="metric-label">Consultations Booked</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">0</div>
+              <div class="metric-label">Sales Closed</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">$0</div>
+              <div class="metric-label">Revenue</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">$0</div>
+              <div class="metric-label">Ad Spend</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- TIMELINE TAB -->
+      <div id="timeline" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">Launch Timeline</h1>
+          <p class="page-subtitle">Roadmap to first sale and beyond</p>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">Month 1 (Current: Week 1)</h2>
+          <div class="sprint-list">
+            <div class="sprint-item">
+              <div class="sprint-checkbox checked"></div>
+              <div class="sprint-task completed">Redesign /service page</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--green);">✓ Complete</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Deploy all changes to production</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--red);">In Progress</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Create Google Ads account</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--red);">Not Started</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Launch first ad campaign</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Week 2</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">First customer consultation</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Week 3-4</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">Month 2-3: Growth Phase</h2>
+          <div class="sprint-list">
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Scale ads to $6k/mo</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Month 2</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">First sale (target: $7.5k)</div>
+              <div class="sprint-priority p0">P0</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Month 2</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Launch TikTok content</div>
+              <div class="sprint-priority p2">P2</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Month 2</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">10 customer testimonials</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Month 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Add Button -->
+    <button class="add-btn" onclick="alert('Add task feature - integrate with your backend')">+</button>
+  </div>
+  
+  <script>
+    // Tab switching
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+    
+    // Task filtering
+    function filterTasks(category) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      // Filter logic would go here
+      console.log('Filter by:', category);
+    }
+    
+    // Check for updates every 30 seconds
+    setInterval(() => {
+      // Refresh data from backend
+      console.log('Checking for updates...');
+    }, 30000);
+  </script>
+</body>
+</html>
