@@ -543,6 +543,18 @@
           <span class="nav-icon">📅</span>
           <span>Timeline</span>
         </div>
+        
+        <div class="nav-section-title" style="margin-top: 24px;">Projects</div>
+        <div class="nav-item" onclick="showTab('luxhaven')">
+          <span class="nav-icon">🏠</span>
+          <span>Lux Haven</span>
+          <span class="nav-badge warning">3</span>
+        </div>
+        <div class="nav-item" onclick="showTab('aiauto')">
+          <span class="nav-icon">🤖</span>
+          <span>AI Automation</span>
+          <span class="nav-badge">2</span>
+        </div>
       </div>
     </div>
     
@@ -1313,6 +1325,152 @@
           </div>
         </div>
       </div>
+      
+      <!-- AI AUTOMATION PROJECT TAB -->
+      <div id="aiauto" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">AI Automation for Businesses</h1>
+          <p class="page-subtitle">Website launched - needs copywriter review and dev improvements</p>
+        </div>
+        
+        <div class="status-bar">
+          <div class="status-card complete">
+            <div class="status-count">🟢</div>
+            <div class="status-label">Website Live</div>
+          </div>
+          <div class="status-card progress">
+            <div class="status-count">🟡</div>
+            <div class="status-label">Copy Review</div>
+          </div>
+          <div class="status-card blockers">
+            <div class="status-count">🔴</div>
+            <div class="status-label">Dev Improvements</div>
+          </div>
+          <div class="status-card backlog">
+            <div class="status-count">2</div>
+            <div class="status-label">Pending Tasks</div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">Project Status</h2>
+          <div class="team-grid">
+            <div class="team-card" style="border: 1px solid var(--green);">
+              <div class="team-header">
+                <div class="team-avatar" style="width: 50px; height: 50px; font-size: 20px; background: var(--green);">✓</div>
+                <div>
+                  <div class="team-name">Website</div>
+                  <div class="team-role">Live & Functional</div>
+                </div>
+              </div>
+              <div style="margin-bottom: 16px;">
+                <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">STATUS</div>
+                <div style="font-size: 14px; color: var(--green);">Deployed and accessible</div>
+              </div>
+              <div class="team-priorities">
+                <div class="priority-item">Domain configured</div>
+                <div class="priority-item">Basic pages live</div>
+                <div class="priority-item">Contact form working</div>
+              </div>
+            </div>
+            
+            <div class="team-card" style="border: 1px solid var(--yellow);">
+              <div class="team-header">
+                <div class="team-avatar" style="width: 50px; height: 50px; font-size: 20px; background: var(--yellow);">✎</div>
+                <div>
+                  <div class="team-name">Copywriter</div>
+                  <div class="team-role">Review Needed</div>
+                </div>
+              </div>
+              <div style="margin-bottom: 16px;">
+                <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">PENDING REVIEW</div>
+                <div style="font-size: 14px; color: var(--yellow);">Website copy audit required</div>
+              </div>
+              <div class="team-priorities">
+                <div class="priority-item">Homepage messaging</div>
+                <div class="priority-item">Service descriptions</div>
+                <div class="priority-item">CTA optimization</div>
+              </div>
+            </div>
+            
+            <div class="team-card" style="border: 1px solid var(--red);">
+              <div class="team-header">
+                <div class="team-avatar" style="width: 50px; height: 50px; font-size: 20px; background: var(--red);">⚡</div>
+                <div>
+                  <div class="team-name">Developer</div>
+                  <div class="team-role">Improvements Needed</div>
+                </div>
+              </div>
+              <div style="margin-bottom: 16px;">
+                <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">TECHNICAL WORK</div>
+                <div style="font-size: 14px; color: var(--red);">Performance & UX fixes</div>
+              </div>
+              <div class="team-priorities">
+                <div class="priority-item">Page speed optimization</div>
+                <div class="priority-item">Mobile responsiveness</div>
+                <div class="priority-item">SEO meta tags</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2 class="section-title">Tasks</h2>
+          <div class="sprint-list">
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Copywriter review - Homepage messaging clarity</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--yellow);">In Progress</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Copywriter review - Service descriptions</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Pending</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Dev - Page speed optimization</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--red);">Not Started</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Dev - Mobile responsiveness check</div>
+              <div class="sprint-priority p1">P1</div>
+              <div style="font-size: 12px; color: var(--red);">Not Started</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Dev - Add SEO meta tags & schema</div>
+              <div class="sprint-priority p2">P2</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Backlog</div>
+            </div>
+            <div class="sprint-item">
+              <div class="sprint-checkbox"></div>
+              <div class="sprint-task">Analytics - Set up conversion tracking</div>
+              <div class="sprint-priority p2">P2</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Backlog</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- LUX HAVEN PROJECT TAB -->
+      <div id="luxhaven" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">Lux Haven Infrastructure</h1>
+          <p class="page-subtitle">Premium sauna & cold plunge installation</p>
+        </div>
+        
+        <div style="padding: 40px; text-align: center; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border);">
+          <div style="font-size: 48px; margin-bottom: 16px;">🏠</div>
+          <h2 style="margin-bottom: 12px;">Lux Haven Project Dashboard</h2>
+          <p style="color: var(--text-secondary); margin-bottom: 24px;">Use the Overview tabs to manage this project</p>
+          <button onclick="showTab('dashboard')" style="padding: 12px 24px; background: var(--accent-gold); color: var(--bg-primary); border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Go to Dashboard</button>
+        </div>
+      </div>
     </div>
     
     <!-- Add Button -->
@@ -1325,7 +1483,20 @@
       document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
+      
+      // Find and activate the corresponding nav item
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => {
+        const onclick = item.getAttribute('onclick');
+        if (onclick && onclick.includes(`showTab('${tabId}')`)) {
+          item.classList.add('active');
+        }
+      });
+      
+      // Prevent scrolling if event exists
+      if (typeof event !== 'undefined' && event.preventDefault) {
+        event.preventDefault();
+      }
     }
     
     // Task filtering
